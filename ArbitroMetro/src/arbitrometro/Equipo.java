@@ -112,5 +112,9 @@ public class Equipo {
         return puntos;
     }
     
-    
+    public String toString(){
+        String s="\t"+nombre;
+        
+        return s;
+    }
 }
