@@ -34,6 +34,7 @@ public class IO {
         FileReader entrada = null;
         String cadena = "";
         try {
+
             entrada = new FileReader(ruta);
             BufferedReader miBuffer = new BufferedReader(entrada);
 //            reader = new BufferedReader(new InputStreamReader(new FileInputStream(csvFile), ANSI_CODI));
