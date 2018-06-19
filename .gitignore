@@ -11,13 +11,16 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar por lo menos la libreridas :v
 *.war
 *.nar
 *.ear
 *.zip
 *.tar.gz
 *.rar
+
+# :V Maldito apple y sus archivos de copia
+.DS_Store
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
