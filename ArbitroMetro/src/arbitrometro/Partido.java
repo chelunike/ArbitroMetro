@@ -3,7 +3,9 @@ package arbitrometro;
 import java.util.ArrayList;
 
 /**
- *
+ * Pues esto no tiene mucha siensia un puñao de personas detras de una pelota,
+ * aun asi tenemos que saber quien marca los goles para los goleadores :W
+ * 
  * @author chelunike
  */
 public class Partido {
@@ -23,37 +25,5 @@ public class Partido {
         equipo2 = visitante;
     }
         
-    
-    public class Goles{
-        //Atributos
-        private int goles;
-        private Jugador pepe;
-        
-        //Contructor
-        public Goles(Jugador jug, int goles){
-            this.goles = goles;
-            pepe = jug;
-        }
-        
-        //Metodos
-        public int getGoles() {
-            return goles;
-        }
-
-        public void setGoles(int goles) {
-            this.goles = goles;
-        }
-
-        public Jugador getPepe() {
-            return pepe;
-        }
-
-        public void setPepe(Jugador pepe) {
-            this.pepe = pepe;
-        }
-        
-        
-        
-    }
     
 }

@@ -4,7 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * @author yo
+ * De cada equipo se almacena: el nombre y los jugadores.
+ * También una serie de datos, que aunque sean calculados, sirven para tener
+ * dos puntos de comparacion y asi comprobar posibles errores en los datos.
+ * 
+ * @author chelunike
  */
 public class Equipo {
     //Atributos
@@ -17,8 +21,9 @@ public class Equipo {
     private int golesFavor;
     private int golesContra;
     private int partJugados;
+    // Los partidos no presentados son iguales que un partido perdidos, pero
+    // guardamos este dato de consulta :)
     private int partNoPresentado;
-    private int puntos;
     
     //Constructor
     public Equipo(String equipo){
@@ -50,8 +55,7 @@ public class Equipo {
     }
     
     public void actualiza(){
-        partJugados = partEmpatados +partGanados +partPerdidos +partNoPresentado;
-        puntos = partGanados*3+ partPerdidos;
+        partJugados = partEmpatados +partGanados +partPerdidos;
     }
     
     public void ganan(){
@@ -109,7 +113,7 @@ public class Equipo {
     }
 
     public int getPuntos() {
-        return puntos;
+        return partGanados*3+partEmpatados;
     }
     
     public String toString(){
