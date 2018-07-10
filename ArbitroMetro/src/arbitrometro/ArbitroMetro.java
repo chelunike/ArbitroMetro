@@ -1,6 +1,7 @@
 package arbitrometro;
 
-import ventanas.InitDesing;
+import ventanas.*;
+import herramientas.IO;
 
 /**
  * Clase principal
@@ -17,7 +18,12 @@ public class ArbitroMetro {
     
     
     public static void main(String[] args) {
-        // TODO code application logic here
+        //NInio to empiesa aki :)
+        System.out.println("Ventana de inicio");
+        
+        InitDesing inicio = new InitDesing();
+        inicio.setVisible(true);
+        
         System.out.println("Arbitrometro to Profesional");
         System.out.println("\t Por chelunike y antoniocastilla (acc)");
         System.out.println("\t Team Potato :) ");
@@ -30,6 +36,7 @@ public class ArbitroMetro {
         
         
         System.out.println("Clasificación:\n"+c.toString());
+        
         
     }
     

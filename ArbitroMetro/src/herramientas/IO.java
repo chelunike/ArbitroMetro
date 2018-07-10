@@ -3,22 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Herramientas;
+package herramientas;
 
-import com.opencsv.CSVWriter;
-import java.awt.List;
+//import com.opencsv.CSVWriter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,9 +20,23 @@ import javax.swing.JOptionPane;
  * @author Antonio
  */
 public class IO {
-    
+    //Constantes
     static final String ANSI_CODI = "Cp1252";
 
+    //Atributos
+    private File file;
+    
+    //Constructores
+    public IO(String ruta){
+        file = new File(ruta);
+    }
+    
+    //Metodos
+    
+    
+    // -- -- -- Metodos Estaticos -- -- --
+    
+    
     public static String lee(String ruta) {
 
         FileReader entrada = null;
@@ -83,6 +91,7 @@ public class IO {
         }
     }
 
+/*
     public static void escribeCsv(String nombre, Object datos) {
 
         try {
@@ -99,5 +108,6 @@ public class IO {
             System.out.println("Error csv:\n" + ex);
         }
     }
+*/
 
 }
