@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/ventanas/InitVentanilla.java</file>
+            <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/arbitrometro/ArbitroMetro.java</file>
+            <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/arbitrometro/Goles.java</file>
+            <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/herramientas/IO.java</file>
+            <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/herramientas/Serializacion.java</file>
+            <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/arbitrometro/Jornada.java</file>
+            <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/ventanas/VentanaPrincipal.java</file>
+            <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/arbitrometro/Partido.java</file>
+        </group>
     </open-files>
 </project-private>

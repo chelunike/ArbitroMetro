@@ -1,9 +1,11 @@
 package arbitrometro;
 
+import java.io.Serializable;
+
 /**
  * @author chelunike
  */
-public class Tarjeta {
+public class Tarjeta implements Serializable {
     //Atributos
     private String color;
     

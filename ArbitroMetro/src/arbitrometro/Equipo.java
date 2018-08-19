@@ -1,5 +1,6 @@
 package arbitrometro;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * 
  * @author chelunike
  */
-public class Equipo {
+public class Equipo  implements Serializable {
     //Atributos
     private String nombre;
     private ArrayList <Jugador> jugadores;
@@ -116,9 +117,7 @@ public class Equipo {
         return partGanados*3+partEmpatados;
     }
     
-    public String toString(){
-        String s="\t"+nombre;
-        
-        return s;
+    public String toString(){        
+        return nombre;
     }
 }

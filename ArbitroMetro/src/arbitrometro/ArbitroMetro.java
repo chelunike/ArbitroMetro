@@ -1,7 +1,8 @@
 package arbitrometro;
 
 import ventanas.*;
-import herramientas.IO;
+import herramientas.Serializacion;
+import java.time.LocalDate;
 
 /**
  * Clase principal
@@ -21,22 +22,53 @@ public class ArbitroMetro {
         //NInio to empiesa aki :)
         System.out.println("Ventana de inicio");
         
-        InitDesing inicio = new InitDesing();
-        inicio.setVisible(true);
-        
         System.out.println("Arbitrometro to Profesional");
         System.out.println("\t Por chelunike y antoniocastilla (acc)");
         System.out.println("\t Team Potato :) ");
         
-        // -- Prebas de las clases de Datos
+        //InitVentanilla init = new InitVentanilla("Liga Domingo Savio");
+        //init.setVisible(true);
+        
         Liga c = new Liga("Liguilla");
         
         c.insertarEquipo("Dream Team");
         c.insertarEquipo("Urban Futsal");
         
+        Jugador yo = new Jugador("Yo", LocalDate.now());
         
-        System.out.println("Clasificación:\n"+c.toString());
+        Jornada j1 = new Jornada("Jornada 1");
+        j1.setFecha(LocalDate.now());
         
+        Partido p1 = new Partido(c.getEquipo(0), c.getEquipo(1));
+        Partido p2 = new Partido(c.getEquipo(1), c.getEquipo(0));
+        
+        Goles g1 = new Goles(yo, 2);
+        
+        p1.addGolEquipo1(g1);
+        p1.addGolEquipo2(g1);
+        
+        j1.addPartido(p1);
+        j1.addPartido(p2);
+        j1.addPartido(p2);
+        j1.addPartido(p2);
+        j1.addPartido(p2);
+        j1.addPartido(p2);
+        j1.addPartido(p2);
+        j1.addPartido(p2);
+        j1.addPartido(p2);
+        
+        
+        VentanaPrincipal vp = new VentanaPrincipal(c);
+        
+        vp.actualizaJornada(j1);
+        
+        vp.setVisible(true);
+        
+           ;;  ;;
+           ;;  ;;
+        
+        ;;        ;;
+         ;;;;;;;;;; 
         
     }
     

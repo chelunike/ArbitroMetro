@@ -1,12 +1,13 @@
 package arbitrometro;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
  * @author yo
  */
-public class Jugador {
+public class Jugador implements Serializable {
     //Atributos
     private String nombre;
     private String apellidos;

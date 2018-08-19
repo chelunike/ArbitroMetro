@@ -1,12 +1,14 @@
 package arbitrometro;
 
+import java.io.Serializable;
+
 /**
  * Clase para saber quien marca un gol y ya xd
  *
  * @author chelunike
  */
 
-public class Goles{
+public class Goles implements Serializable {
 //Atributos
 private int goles;
 private Jugador pepe;

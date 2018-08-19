@@ -1,4 +1,5 @@
 package arbitrometro;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  * 
  * @author chelunike
  */
-public class Liga {
+public class Liga implements Serializable {
     //Atributos
     private String nombre;
     

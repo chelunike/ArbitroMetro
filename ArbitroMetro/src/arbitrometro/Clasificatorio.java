@@ -1,5 +1,6 @@
 package arbitrometro;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * 
  * @author chelunike
  */
-public class Clasificatorio {
+public class Clasificatorio implements Serializable {
     // Atributos
     private ArrayList <Equipo> equipos;
     private ArrayList <Jornada> jornadas;
