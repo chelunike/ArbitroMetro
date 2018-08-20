@@ -2,7 +2,6 @@ package ventanas;
 
 import arbitrometro.*;
 import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.time.format.DateTimeFormatter;
 import javax.swing.*;
@@ -14,14 +13,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
    //Atributos
     private Liga liga;
+    private int index;
     
     //Constructor
     public VentanaPrincipal(Liga l) {
         liga = l;
+        index = 0;
         
         // Inicializacon de la ventana
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        if(l.numJornadas()>0)
+            this.actualizaJornada(l.getJornada(index));
     }
 
     /**
@@ -36,7 +40,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonAdelante = new javax.swing.JButton();
         jButtonAtras = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
-        jButtonEditar1 = new javax.swing.JButton();
+        jButtonNueva = new javax.swing.JButton();
+        jScrollPane = new javax.swing.JScrollPane();
         jPanelJornada = new javax.swing.JPanel();
         jPanelBotones = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -57,14 +62,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabelFecha.setText("Fecha:");
 
         jButtonAdelante.setText("Adelante");
+        jButtonAdelante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAdelanteActionPerformed(evt);
+            }
+        });
 
         jButtonAtras.setText("Atras");
+        jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtrasActionPerformed(evt);
+            }
+        });
 
         jButtonEditar.setText("Editar");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
 
-        jButtonEditar1.setText("Nueva");
+        jButtonNueva.setText("Nueva");
+        jButtonNueva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNuevaActionPerformed(evt);
+            }
+        });
+
+        jScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanelJornada.setLayout(new java.awt.GridBagLayout());
+        jScrollPane.setViewportView(jPanelJornada);
 
         javax.swing.GroupLayout jPanelJornadasLayout = new javax.swing.GroupLayout(jPanelJornadas);
         jPanelJornadas.setLayout(jPanelJornadasLayout);
@@ -77,15 +105,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelJornadasLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanelJornadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelJornada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelJornadasLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jButtonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
-                        .addComponent(jButtonEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addComponent(jButtonNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonAdelante, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23))
@@ -97,16 +125,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanelJornadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelJornada, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelJornadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelJornadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelJornadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonAdelante, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonEditar1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -132,7 +160,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,7 +179,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(39, 39, 39)
                 .addComponent(jPanelJornadas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -167,11 +195,44 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_formWindowClosing
 
+    private void jButtonAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdelanteActionPerformed
+        // Adelante
+        System.out.println("Avanty");
+        if(index+1 < liga.numJornadas())
+            index++;
+        else
+            index = 0;
+        this.actualizaJornada(liga.getJornada(index));
+        System.out.println(""+index);
+    }//GEN-LAST:event_jButtonAdelanteActionPerformed
+
+    private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
+        // Atras
+        System.out.println("R");
+        if(index-1 >= 0)
+            index--;
+        else
+            index = liga.numJornadas()-1;
+        this.actualizaJornada(liga.getJornada(index));
+        System.out.println(""+index);
+    }//GEN-LAST:event_jButtonAtrasActionPerformed
+
+    private void jButtonNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevaActionPerformed
+        // Nueva Jornada
+        
+    }//GEN-LAST:event_jButtonNuevaActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        // Editar Editar
+        
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
 
     // Metodos
     
     public void actualizaJornada(Jornada j){
         jPanelJornada.removeAll();
+        repaint();
         
         jLabelTitulo.setText( j.getTitle());
         jLabelFecha.setText("Fecha: "+j.getFecha().format(DateTimeFormatter.ISO_DATE));
@@ -221,11 +282,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAdelante;
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JButton jButtonEditar;
-    private javax.swing.JButton jButtonEditar1;
+    private javax.swing.JButton jButtonNueva;
     private javax.swing.JLabel jLabelFecha;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelBotones;
     private javax.swing.JPanel jPanelJornada;
     private javax.swing.JPanel jPanelJornadas;
+    private javax.swing.JScrollPane jScrollPane;
     // End of variables declaration//GEN-END:variables
 }

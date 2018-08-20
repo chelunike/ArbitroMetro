@@ -34,7 +34,19 @@ public class Liga implements Serializable {
     
     //Metodos
     
-    public void insertarEquipo(String nombre){
+    public void addJornada(Jornada j){
+        jornadas.add(j);
+    }
+    
+    public int numJornadas(){
+        return jornadas.size();
+    }
+    
+    public Jornada getJornada(int index){
+        return jornadas.get(index);
+    }
+    
+    public void addEquipo(String nombre){
         Equipo pepe = new Equipo(nombre);
         equipos.add(pepe);
     }
