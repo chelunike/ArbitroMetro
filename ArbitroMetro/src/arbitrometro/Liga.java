@@ -1,5 +1,6 @@
 package arbitrometro;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +17,9 @@ import java.util.ArrayList;
  * @author chelunike
  */
 public class Liga implements Serializable {
+    //Constantes
+    public static final Jugador yo = new Jugador("Yo", LocalDate.now());
+    
     //Atributos
     private String nombre;
     

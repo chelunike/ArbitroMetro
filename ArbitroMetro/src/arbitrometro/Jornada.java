@@ -26,6 +26,14 @@ public class Jornada implements Serializable {
         partidos.add(p);
     }
     
+    public int numPartidos(){
+        return partidos.size();
+    }
+    
+    public Partido getPartido(int index){
+        return partidos.get(index);
+    }
+    
     //Get y Set
 
     public String getTitle() {
@@ -47,5 +55,5 @@ public class Jornada implements Serializable {
     public ArrayList<Partido> getPartidos() {
         return partidos;
     }
-    
+   
 }

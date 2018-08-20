@@ -55,6 +55,9 @@ public class ArbitroMetro {
         j1.addPartido(p2);
         j1.addPartido(p2);
         j1.addPartido(p2);
+        
+        //p2.equipo1Ausente(true);
+        p2.equipo2Ausente(true);
         j1.addPartido(p2);
         
         c.addJornada(j1);

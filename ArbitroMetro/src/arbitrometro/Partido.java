@@ -13,6 +13,9 @@ public class Partido implements Serializable {
     //Atributos
     private Equipo equipo1;
     private Equipo equipo2;
+    
+    private boolean ausente1;
+    private boolean ausente2;
 
     private ArrayList<Goles> goles1;
     private ArrayList<Goles> goles2;
@@ -26,6 +29,9 @@ public class Partido implements Serializable {
         equipo2 = visitante;
         
         //Instanciar atributos
+        ausente1 = false;
+        ausente2 = false;
+        
         goles1 = new ArrayList();
         goles2 = new ArrayList();
         
@@ -36,13 +42,34 @@ public class Partido implements Serializable {
         
     //Metodos
     public void addGolEquipo1(Goles g){
-        goles1.add(g);
+        if(!ausente1)
+            goles1.add(g);
     }
     
     public void addGolEquipo2(Goles g){
-        goles2.add(g);
+        if(!ausente2)
+            goles2.add(g);
     }
     
+    public void equipo1Ausente(boolean ausente){
+        if(ausente != ausente1){
+            goles1 = new ArrayList<>();
+            goles2 = new ArrayList<>();
+            if(ausente && !ausente2)
+                goles2.add(new Goles(Liga.yo, 3));
+        }
+        this.ausente1 = ausente;
+    }
+    
+    public void equipo2Ausente(boolean ausente){
+        if(ausente != ausente2){
+            goles1 = new ArrayList<>();
+            goles2 = new ArrayList<>();
+            if(ausente && !ausente1)
+                goles1.add(new Goles(Liga.yo, 3));
+        }
+        this.ausente2 = ausente;
+    }
     
     //Get y Set
 
