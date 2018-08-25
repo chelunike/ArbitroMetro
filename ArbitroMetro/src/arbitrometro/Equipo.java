@@ -47,12 +47,22 @@ public class Equipo  implements Serializable {
         return jugadores.get(index);
     }
     
-    public ArrayList <Jugador> getListaJugadores(){
-        return jugadores;
+    public String[] getArrayNomJugadores(){
+        String[] lista = new String[jugadores.size()];
+        for(int i=0; i<lista.length; i++)
+            lista[i] = jugadores.get(i).getNombre();
+        return lista;
     }
     
     public int getNumJugadores(){
         return jugadores.size();
+    }
+    
+    public int getIndexJugador(String nombre){
+        for(Jugador j: jugadores)
+            if(j.getNombre().compareToIgnoreCase(nombre)==0)
+                return jugadores.indexOf(j);
+        return -1;
     }
     
     public void actualiza(){

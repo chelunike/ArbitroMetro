@@ -50,8 +50,11 @@ public class Liga implements Serializable {
         return jornadas.get(index);
     }
     
-    public void addEquipo(String nombre){
-        Equipo pepe = new Equipo(nombre);
+    public void eliminarJornada(int index){
+        jornadas.remove(index);
+    }
+    
+    public void addEquipo(Equipo pepe){
         equipos.add(pepe);
     }
     
@@ -67,6 +70,13 @@ public class Liga implements Serializable {
         return equipos;
     }
     
+    public String[] getArrayEquipos(){
+        String[] l = new String[equipos.size()];
+        System.out.println("Lenth: "+equipos.size());
+        for(int i=0; i<l.length; i++)
+            l[i] = equipos.get(i).toString();
+        return l;
+    }
     
     public String toString(){
         String s="";

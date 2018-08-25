@@ -3,6 +3,9 @@ package arbitrometro;
 import ventanas.*;
 import herramientas.Serializacion;
 import java.time.LocalDate;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 /**
  * Clase principal
@@ -31,9 +34,21 @@ public class ArbitroMetro {
         
         Liga c = new Liga("Liguilla");
         
-        c.addEquipo("Dream Team");
-        c.addEquipo("Urban Futsal");
         
+        Equipo e1 = new Equipo("Fucm Logic");
+        
+        e1.añadirJugador("Antonio", LocalDate.now());
+        e1.añadirJugador("Charlie", LocalDate.now());
+        e1.añadirJugador("Ferchu", LocalDate.now());
+        e1.añadirJugador("Montes", LocalDate.now());
+        
+        Equipo e2 = new Equipo("Dream Team");
+        
+        e2.añadirJugador("Juan Carlos", LocalDate.now());
+        
+        c.addEquipo(e1);
+        c.addEquipo(e2);
+        /*
         Jugador yo = new Jugador("Yo", LocalDate.now());
         
         Jornada j1 = new Jornada("Jornada 1");
@@ -45,24 +60,40 @@ public class ArbitroMetro {
         Partido p1 = new Partido(c.getEquipo(0), c.getEquipo(1));
         Partido p2 = new Partido(c.getEquipo(1), c.getEquipo(0));
         
-        Goles g1 = new Goles(yo, 2);
-        Goles g2 = new Goles(yo, 5);
+        Goles g1 = new Goles(e1.getJugador(1), 2);
+        Goles g2 = new Goles(e1.getJugador(2), 5);
         
         p1.addGolEquipo1(g1);
+        p1.addGolEquipo2(g2);
         p2.addGolEquipo2(g2);
         
         j1.addPartido(p1);
         j1.addPartido(p2);
         j1.addPartido(p2);
-        j1.addPartido(p2);
+        j2.addPartido(p2);
         
-        //p2.equipo1Ausente(true);
-        p2.equipo2Ausente(true);
+        //p1.equipo1Ausente(true);
+        //p1.equipo2Ausente(true);
         j1.addPartido(p2);
         
         c.addJornada(j1);
         c.addJornada(j2);
+        */
         
+        String str1 = "javax.swing.plaf.metal.MetalLookAndFeel";
+        String str2 = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
+        String str3 = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
+        String str4 = "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel";
+        String str5 = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
+        String str6 = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+        
+        try {
+            UIManager.setLookAndFeel(str6);
+            //SwingUtilities.updateComponentTreeUI(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        JFrame.setDefaultLookAndFeelDecorated(true);
         
         VentanaPrincipal vp = new VentanaPrincipal(c);
         

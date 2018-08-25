@@ -1,27 +1,39 @@
 package ventanas;
 
 import arbitrometro.*;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerModel;
+import javax.swing.event.ChangeListener;
 
 /**
  * @author chelunike
  */
-public class VentanaPatidos extends javax.swing.JDialog {
+public class VentanaPatidos extends javax.swing.JFrame {
     //Atributos
+    private Liga liga;
     private Jornada jornada;
     private int index;
     
     //Constructor
-    public VentanaPatidos(java.awt.Frame parent, boolean modal, Jornada j) {
-        super(parent, modal);
-        jornada = j;
+    public VentanaPatidos(java.awt.Frame parent, boolean modal, Liga l, int index) {
+       // super(parent, modal);
+        liga = l;
+        jornada = l.getJornada(index);
         index = 0;
         
         
         //Inicializacion de Componentes
         initComponents();
+        setLocationRelativeTo(parent);
         
         if(jornada.numPartidos() > 0)
             actualizaPartido(jornada.getPartido(index));
+        
+        this.setVisible(true);
     }
 
     /**
@@ -30,6 +42,7 @@ public class VentanaPatidos extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSpinnerGoles = new javax.swing.JSpinner();
         jComBoxEquipo1 = new javax.swing.JComboBox<>();
         jComBoxEquipo2 = new javax.swing.JComboBox<>();
         jLabelVS = new javax.swing.JLabel();
@@ -56,12 +69,12 @@ public class VentanaPatidos extends javax.swing.JDialog {
         jPanelBotonera = new javax.swing.JPanel();
         jButtonAdelante = new javax.swing.JButton();
         jButtonAtras = new javax.swing.JButton();
-        jButtonGuardar = new javax.swing.JButton();
-        jButtonCancelar = new javax.swing.JButton();
         jButtonEliminar = new javax.swing.JButton();
         jButtonNuevo = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBoxE1 = new javax.swing.JCheckBox();
+        jCheckBoxE2 = new javax.swing.JCheckBox();
+
+        jSpinnerGoles.setMinimumSize(new java.awt.Dimension(31, 38));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(201, 31, 167));
@@ -77,12 +90,21 @@ public class VentanaPatidos extends javax.swing.JDialog {
         jLabelGoles2.setText("Goles");
 
         jButtonGoles1Add.setText("+");
+        jButtonGoles1Add.setMaximumSize(new java.awt.Dimension(31, 31));
+        jButtonGoles1Add.setMinimumSize(new java.awt.Dimension(31, 31));
 
+        jButtonGoles1Remove.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         jButtonGoles1Remove.setText("-");
+        jButtonGoles1Remove.setMaximumSize(new java.awt.Dimension(31, 31));
+        jButtonGoles1Remove.setMinimumSize(new java.awt.Dimension(31, 31));
 
         jButtonGoles2Remove.setText("-");
+        jButtonGoles2Remove.setMaximumSize(new java.awt.Dimension(31, 31));
+        jButtonGoles2Remove.setMinimumSize(new java.awt.Dimension(31, 31));
 
         jButtonGoles2Add.setText("+");
+        jButtonGoles2Add.setMaximumSize(new java.awt.Dimension(31, 31));
+        jButtonGoles2Add.setMinimumSize(new java.awt.Dimension(31, 31));
 
         jScrollPaneEquipo1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -116,12 +138,20 @@ public class VentanaPatidos extends javax.swing.JDialog {
         jScrollPane2.setViewportView(jPanelTarj2);
 
         jButtonTarj1Add.setText("+");
+        jButtonTarj1Add.setMaximumSize(new java.awt.Dimension(31, 31));
+        jButtonTarj1Add.setMinimumSize(new java.awt.Dimension(31, 31));
 
         jButtonTarj1Remove.setText("-");
+        jButtonTarj1Remove.setMaximumSize(new java.awt.Dimension(31, 31));
+        jButtonTarj1Remove.setMinimumSize(new java.awt.Dimension(31, 31));
 
         jButtonTarj2Add.setText("+");
+        jButtonTarj2Add.setMaximumSize(new java.awt.Dimension(31, 31));
+        jButtonTarj2Add.setMinimumSize(new java.awt.Dimension(31, 31));
 
         jButtonTarj2Remove.setText("-");
+        jButtonTarj2Remove.setMaximumSize(new java.awt.Dimension(31, 31));
+        jButtonTarj2Remove.setMinimumSize(new java.awt.Dimension(31, 31));
 
         jButtonAdelante.setText(">");
         jButtonAdelante.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -132,10 +162,6 @@ public class VentanaPatidos extends javax.swing.JDialog {
         jButtonAtras.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonAtras.setMaximumSize(new java.awt.Dimension(50, 50));
         jButtonAtras.setMinimumSize(new java.awt.Dimension(50, 50));
-
-        jButtonGuardar.setText("Guardar");
-
-        jButtonCancelar.setText("Cancelar");
 
         jButtonEliminar.setText("Eliminar");
 
@@ -148,15 +174,11 @@ public class VentanaPatidos extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotoneraLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButtonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addComponent(jButtonNuevo)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonEliminar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addComponent(jButtonAdelante, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -167,16 +189,14 @@ public class VentanaPatidos extends javax.swing.JDialog {
                 .addGroup(jPanelBotoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdelante, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonGuardar)
-                    .addComponent(jButtonCancelar)
                     .addComponent(jButtonEliminar)
                     .addComponent(jButtonNuevo))
                 .addContainerGap())
         );
 
-        jCheckBox1.setText("Ausente");
+        jCheckBoxE1.setText("Ausente");
 
-        jCheckBox2.setText("Ausente");
+        jCheckBoxE2.setText("Ausente");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,7 +208,7 @@ public class VentanaPatidos extends javax.swing.JDialog {
                     .addComponent(jPanelBotonera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCheckBoxE1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPaneTarj1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelTarj1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabelGoles1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -225,7 +245,7 @@ public class VentanaPatidos extends javax.swing.JDialog {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButtonTarj2Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jCheckBox2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jCheckBoxE2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -238,8 +258,8 @@ public class VentanaPatidos extends javax.swing.JDialog {
                     .addComponent(jLabelVS, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2))
+                    .addComponent(jCheckBoxE1)
+                    .addComponent(jCheckBoxE2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelGoles1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
@@ -250,10 +270,10 @@ public class VentanaPatidos extends javax.swing.JDialog {
                     .addComponent(jScrollPaneEquipo1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonGoles1Add)
-                    .addComponent(jButtonGoles1Remove)
-                    .addComponent(jButtonGoles2Add)
-                    .addComponent(jButtonGoles2Remove))
+                    .addComponent(jButtonGoles1Add, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonGoles1Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonGoles2Add, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonGoles2Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTarj1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,10 +284,10 @@ public class VentanaPatidos extends javax.swing.JDialog {
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonTarj1Add)
-                    .addComponent(jButtonTarj1Remove)
-                    .addComponent(jButtonTarj2Add)
-                    .addComponent(jButtonTarj2Remove))
+                    .addComponent(jButtonTarj1Add, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonTarj1Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonTarj2Add, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonTarj2Remove, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanelBotonera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -279,15 +299,133 @@ public class VentanaPatidos extends javax.swing.JDialog {
     //Metodos
     
     public void actualizaPartido(Partido p){
+        enableEquipo1(true);
+        enableEquipo2(true);
+        
+        //jComBoxEquipo1 = new JComboBox(liga.getArrayEquipos());
+        //jComBoxEquipo2 = new JComboBox(liga.getArrayEquipos());
+        jComBoxEquipo1.removeAllItems();
+        jComBoxEquipo2.removeAllItems();
+        for(String e: liga.getArrayEquipos()){
+            jComBoxEquipo1.addItem(e);
+            jComBoxEquipo2.addItem(e);
+        }
+            
+        jComBoxEquipo1.setSelectedItem(p.getEquipo1().toString());
+        jComBoxEquipo2.setSelectedItem(p.getEquipo2().toString());
+        
+        if(p.isAusente1() || p.isAusente2()){
+            jCheckBoxE1.setSelected(p.isAusente1());
+            jCheckBoxE2.setSelected(p.isAusente2());
+            
+            enableEquipo1(false);
+            enableEquipo2(false);
+        }
+        actualizarGoles1(p);
+        actualizaGoles2(p);
         
     }
     
-    public void actualizarGoles1(){
+    public void actualizarGoles1(Partido p){
+        jPanelEquipo1.removeAll();
+        repaint();
         
+        String[] head = {"Jugador", "Goles"};
+        String[] jugadores = p.getEquipo1().getArrayNomJugadores();
+        
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 0.9;
+        gbc.weighty = 1.0;
+        gbc.insets = new Insets(0, 5, 10, 5);
+        gbc.ipadx = 5;
+        gbc.ipady = 5;
+        gbc.gridx=0;
+        gbc.gridy=0;
+        
+        for(String col: head){
+            jPanelEquipo1.add(new JLabel(col), gbc);
+            gbc.gridx++;
+        }
+        gbc.gridy++;
+        gbc.gridx=0;
+        gbc.weighty=100;
+        for(Goles g:p.getGoles1()){
+            JComboBox cb;
+            JSpinner s = new JSpinner();
+            
+            if(p.isAusente1()){
+                cb = new JComboBox();
+                cb.setEnabled(false);
+                s.setEnabled(false);
+            }else{
+                cb = new JComboBox(jugadores);
+                cb.setSelectedItem(g.getPepe().getNombre());
+            }
+            jPanelEquipo1.add(cb, gbc);
+            gbc.gridx++;
+            
+            s.setValue(g.getGoles());
+            //jSpinnerGoles.setValue(g.getGoles());
+            
+            jPanelEquipo2.add(s, gbc);
+            
+            gbc.weighty*=100;
+            gbc.gridx = 0;
+            gbc.gridy++;
+        }
     }
     
-    public void actualizaGoles2(){
-    
+    public void actualizaGoles2(Partido p){
+        jPanelEquipo2.removeAll();
+        repaint();
+        
+        String[] head = {"Jugador", "Goles"};
+        String[] jugadores = p.getEquipo2().getArrayNomJugadores();
+        
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 0.9;
+        gbc.weighty = 1.0;
+        gbc.insets = new Insets(0, 5, 10, 5);
+        gbc.ipadx = 5;
+        gbc.ipady = 5;
+        gbc.gridx=0;
+        gbc.gridy=0;
+        
+        for(String col: head){
+            jPanelEquipo2.add(new JLabel(col), gbc);
+            gbc.gridx++;
+        }
+        gbc.gridy++;
+        gbc.gridx=0;
+        gbc.weighty=100;
+        for(Goles g:p.getGoles2()){
+            JComboBox cb;
+            JSpinner s = new JSpinner();
+            
+            if(p.isAusente2()){
+                cb = new JComboBox();
+                cb.setEnabled(false);
+                s.setEnabled(false);
+            }else{
+                cb = new JComboBox(jugadores);
+                cb.setSelectedItem(g.getPepe().getNombre());
+            }
+            jPanelEquipo2.add(cb, gbc);
+            gbc.gridx++;
+            
+            s.setValue(g.getGoles());
+            //jSpinnerGoles.setValue(g.getGoles());
+            
+            jPanelEquipo2.add(s, gbc);
+            
+            gbc.weighty*=100;
+            gbc.gridx = 0;
+            gbc.gridy++;
+        }
     }
     
     public void actualizaTarj1(){
@@ -298,24 +436,36 @@ public class VentanaPatidos extends javax.swing.JDialog {
     
     }
     
+    public void enableEquipo1(boolean enable){
+        jButtonGoles1Add.setEnabled(enable);
+        jButtonGoles1Remove.setEnabled(enable);
+        jButtonTarj1Add.setEnabled(enable);
+        jButtonTarj1Remove.setEnabled(enable);
+    }
+    
+    public void enableEquipo2(boolean enable){
+        jButtonGoles2Add.setEnabled(enable);
+        jButtonGoles2Remove.setEnabled(enable);
+        jButtonTarj2Add.setEnabled(enable);
+        jButtonTarj2Remove.setEnabled(enable);
+    }
+    
     //Atributos de la Ventana
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdelante;
     private javax.swing.JButton jButtonAtras;
-    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonGoles1Add;
     private javax.swing.JButton jButtonGoles1Remove;
     private javax.swing.JButton jButtonGoles2Add;
     private javax.swing.JButton jButtonGoles2Remove;
-    private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonNuevo;
     private javax.swing.JButton jButtonTarj1Add;
     private javax.swing.JButton jButtonTarj1Remove;
     private javax.swing.JButton jButtonTarj2Add;
     private javax.swing.JButton jButtonTarj2Remove;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBoxE1;
+    private javax.swing.JCheckBox jCheckBoxE2;
     private javax.swing.JComboBox<String> jComBoxEquipo1;
     private javax.swing.JComboBox<String> jComBoxEquipo2;
     private javax.swing.JLabel jLabelGoles1;
@@ -332,5 +482,6 @@ public class VentanaPatidos extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPaneEquipo1;
     private javax.swing.JScrollPane jScrollPaneEquipo2;
     private javax.swing.JScrollPane jScrollPaneTarj1;
+    private javax.swing.JSpinner jSpinnerGoles;
     // End of variables declaration//GEN-END:variables
 }

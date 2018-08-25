@@ -126,5 +126,13 @@ public class Partido implements Serializable {
     public void setTarjetas2(ArrayList<Tarjeta> tarjetas2) {
         this.tarjetas2 = tarjetas2;
     }
+
+    public boolean isAusente1() {
+        return ausente1;
+    }
+
+    public boolean isAusente2() {
+        return ausente2;
+    }
     
 }

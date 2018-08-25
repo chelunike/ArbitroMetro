@@ -5,7 +5,12 @@
         <group>
             <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/arbitrometro/Liga.java</file>
             <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/arbitrometro/ArbitroMetro.java</file>
+            <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/arbitrometro/Jornada.java</file>
+            <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/arbitrometro/Jugador.java</file>
             <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/ventanas/VentanaPrincipal.java</file>
+            <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/arbitrometro/Partido.java</file>
+            <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/arbitrometro/Equipo.java</file>
+            <file>file:/home/chelunike/GitHub/arbitroMetro/ArbitroMetro/src/ventanas/VentanaPatidos.java</file>
         </group>
     </open-files>
 </project-private>

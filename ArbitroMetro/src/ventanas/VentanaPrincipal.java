@@ -26,6 +26,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         if(l.numJornadas()>0)
             this.actualizaJornada(l.getJornada(index));
+        else
+            sinJornada();
     }
 
     /**
@@ -43,6 +45,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonNueva = new javax.swing.JButton();
         jScrollPane = new javax.swing.JScrollPane();
         jPanelJornada = new javax.swing.JPanel();
+        jButtonEliminar = new javax.swing.JButton();
         jPanelBotones = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -61,14 +64,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabelFecha.setText("Fecha:");
 
-        jButtonAdelante.setText("Adelante");
+        jButtonAdelante.setText(">");
         jButtonAdelante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAdelanteActionPerformed(evt);
             }
         });
 
-        jButtonAtras.setText("Atras");
+        jButtonAtras.setText("<");
         jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAtrasActionPerformed(evt);
@@ -94,6 +97,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanelJornada.setLayout(new java.awt.GridBagLayout());
         jScrollPane.setViewportView(jPanelJornada);
 
+        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelJornadasLayout = new javax.swing.GroupLayout(jPanelJornadas);
         jPanelJornadas.setLayout(jPanelJornadasLayout);
         jPanelJornadasLayout.setHorizontalGroup(
@@ -106,13 +116,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(61, 61, 61))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelJornadasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addComponent(jButtonNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonAdelante, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonEliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(jButtonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(jButtonNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonAdelante, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
             .addGroup(jPanelJornadasLayout.createSequentialGroup()
                 .addContainerGap()
@@ -132,6 +144,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanelJornadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelJornadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelJornadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonAdelante, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,7 +206,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // Event Exit xd
-        System.exit(0);
+        int s = JOptionPane.showConfirmDialog(this, 
+                    "¿Seguro que quieres salir :( ?", "Y se marcho", 
+                    JOptionPane.YES_NO_OPTION);
+        if(s == 0)
+            System.exit(0);
     }//GEN-LAST:event_formWindowClosing
 
     private void jButtonAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdelanteActionPerformed
@@ -220,20 +237,47 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButtonNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevaActionPerformed
         // Nueva Jornada
-        
+        NuevaJornada nj = new NuevaJornada(this, liga);
+        nj.setVisible(true);
+        if(nj.getJornada() != null)
+            liga.addJornada(nj.getJornada());
+        if(liga.numJornadas()>0){
+            index = 0;
+            actualizaJornada(liga.getJornada(index));
+        }
     }//GEN-LAST:event_jButtonNuevaActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        // Editar Editar
+        // Editar Jornada
+        new VentanaPatidos(this, true, liga, index);
         
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        // Eliminar Jornada
+        int s = JOptionPane.showConfirmDialog(this, 
+                    "¿Seguro que quieres eliminar la Jornada:"+liga.getJornada(index)+" ?", ":(", 
+                    JOptionPane.YES_NO_OPTION);
+        if(s == 0)
+            liga.eliminarJornada(index);
+        if(liga.numJornadas()>0){
+            index = 0;
+            actualizaJornada(liga.getJornada(index));
+        }else
+            sinJornada();
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
+
 
     // Metodos
+    public void sinJornada(){
+        enableBotones(false);
+    }
     
     public void actualizaJornada(Jornada j){
+        enableBotones(true);
         jPanelJornada.removeAll();
         repaint();
+        System.out.println("Actualizando Jornada");
         
         jLabelTitulo.setText( j.getTitle());
         jLabelFecha.setText("Fecha: "+j.getFecha().format(DateTimeFormatter.ISO_DATE));
@@ -274,7 +318,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             gbc.gridx = 0;
             gbc.gridy++;
         }
-            
+        pack();
+    }
+    
+    public void enableBotones(boolean c){
+        jButtonAdelante.setEnabled(c);
+        jButtonAtras.setEnabled(c);
+        jButtonEditar.setEnabled(c);
+        jButtonEliminar.setEnabled(c);
+        if(!c){
+            jLabelFecha.setText("");
+            jLabelTitulo.setText("");
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -283,6 +338,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAdelante;
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonNueva;
     private javax.swing.JLabel jLabelFecha;
     private javax.swing.JLabel jLabelTitulo;
