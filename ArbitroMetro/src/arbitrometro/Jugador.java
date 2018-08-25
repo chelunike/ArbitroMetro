@@ -12,6 +12,7 @@ public class Jugador implements Serializable {
     private String nombre;
     private String apellidos;
     private LocalDate fechaNaci;
+    private String lugarNaci;
     private int numGoles;
     private ArrayList <Tarjeta> tarjetas;
     

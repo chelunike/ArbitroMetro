@@ -14,6 +14,9 @@ import java.util.ArrayList;
 public class Equipo  implements Serializable {
     //Atributos
     private String nombre;
+    private String telefono;
+    private String correo;
+    private Jugador capitan;
     private ArrayList <Jugador> jugadores;
     
     private int partGanados;
