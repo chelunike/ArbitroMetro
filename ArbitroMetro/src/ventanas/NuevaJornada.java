@@ -124,7 +124,7 @@ public class NuevaJornada extends javax.swing.JDialog {
         if(jTextFieldNombre.getText().isEmpty()){
             System.out.println("No se admite nombre vacio");
             JOptionPane.showMessageDialog(this, 
-                    "Error: Nombre no introducido\n Introduce un nombre ", "Tampoco cuesta tanto ponerle un nombre :v", 
+                    "Error: Nombre no introducido\n Introduce un nombre ", "Tampoco es tanto :v", 
                     JOptionPane.ERROR_MESSAGE);
         }else
             c = true;
@@ -132,7 +132,7 @@ public class NuevaJornada extends javax.swing.JDialog {
             fecha = LocalDate.parse(jTextFieldFecha.getText(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         }catch(java.time.format.DateTimeParseException e){
             JOptionPane.showMessageDialog(this, 
-                    "Error: Fecha no valida\n Formato: día-mes-año ", "Estudiar para luego no saber ni escribir la fecha bien :v", 
+                    "Error: Fecha no valida\n Formato: día-mes-año ", ":v", 
                     JOptionPane.ERROR_MESSAGE);
             c = false;
         }

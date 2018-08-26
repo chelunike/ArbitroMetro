@@ -53,10 +53,19 @@ public class Jugador implements Serializable {
     public LocalDate getFechaNaci() {
         return fechaNaci;
     }
-
+    
     public void setFechaNaci(LocalDate fechaNaci) {
         this.fechaNaci = fechaNaci;
     }
+
+    public String getLugarNaci() {
+        return lugarNaci;
+    }
+
+    public void setLugarNaci(String lugarNaci) {
+        this.lugarNaci = lugarNaci;
+    }
+    
     
     
 }

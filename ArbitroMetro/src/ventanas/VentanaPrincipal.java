@@ -153,6 +153,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
 
         jButton1.setText("Equipos ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Clasificacion");
 
@@ -266,6 +271,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }else
             sinJornada();
     }//GEN-LAST:event_jButtonEliminarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Equipos
+        new VentanaEquipos(liga);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Metodos

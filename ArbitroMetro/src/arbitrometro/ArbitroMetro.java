@@ -48,7 +48,7 @@ public class ArbitroMetro {
         
         c.addEquipo(e1);
         c.addEquipo(e2);
-        /*
+        
         Jugador yo = new Jugador("Yo", LocalDate.now());
         
         Jornada j1 = new Jornada("Jornada 1");
@@ -78,7 +78,7 @@ public class ArbitroMetro {
         
         c.addJornada(j1);
         c.addJornada(j2);
-        */
+        
         
         String str1 = "javax.swing.plaf.metal.MetalLookAndFeel";
         String str2 = "javax.swing.plaf.nimbus.NimbusLookAndFeel";

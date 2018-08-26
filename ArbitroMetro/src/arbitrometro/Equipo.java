@@ -33,6 +33,7 @@ public class Equipo  implements Serializable {
     public Equipo(String equipo){
         jugadores = new ArrayList();
         nombre = equipo;
+        capitan = Liga.yo;
     }
     
     //Metodos
@@ -48,6 +49,13 @@ public class Equipo  implements Serializable {
     
     public Jugador getJugador(int index){
         return jugadores.get(index);
+    }
+    
+    public int buscaJugador(String name){
+        for(Jugador j:jugadores)
+            if(j.getNombre().compareToIgnoreCase(name)==0)
+                return jugadores.indexOf(j);
+        return -1;
     }
     
     public String[] getArrayNomJugadores(){
@@ -97,6 +105,25 @@ public class Equipo  implements Serializable {
         actualiza();
     }
     
+    // -- Set --
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public void setCapitan(Jugador capitan) {
+        this.capitan = capitan;
+    }
+    
+    
     // -- Get --
     public int getPartGanados() {
         return partGanados;
@@ -129,6 +156,27 @@ public class Equipo  implements Serializable {
     public int getPuntos() {
         return partGanados*3+partEmpatados;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public Jugador getCapitan() {
+        return capitan;
+    }
+
+    public ArrayList<Jugador> getJugadores() {
+        return jugadores;
+    }
+    
     
     public String toString(){        
         return nombre;
