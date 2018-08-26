@@ -3,6 +3,8 @@ package ventanas;
 import arbitrometro.*;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JLabel;
@@ -27,6 +29,7 @@ public class VentanaEquipos extends javax.swing.JFrame {
         
         // Inicializacion Ventana
         initComponents();
+        setLocationRelativeTo(null);
         actualizaListaEquipos();
         
         //Inicializacion del equipo
@@ -245,6 +248,13 @@ public class VentanaEquipos extends javax.swing.JFrame {
 
     private void jButtonAddJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddJugadorActionPerformed
         // Añadir Jugador
+        VentanaJugador vj = new VentanaJugador(this, null);
+        Jugador j = vj.getJugador();
+        Equipo e = liga.getEquipo(index);
+        if(j!=null){
+            e.addJugador(j);
+            actualizaJugadores(e);
+        }
     }//GEN-LAST:event_jButtonAddJugadorActionPerformed
 
     private void jButtonRemoveJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveJugadorActionPerformed
@@ -320,6 +330,12 @@ public class VentanaEquipos extends javax.swing.JFrame {
         for(Jugador j: e.getJugadores()){
             JButton editBt = new JButton("Edit");
             JCheckBox select = new JCheckBox();
+            editBt.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    VentanaEquipos.this.editarJugador(j);
+                }
+            });
             jugadoresSelect.add(select);
             
             jPanelJugadores.add(select, gbc);
@@ -337,6 +353,18 @@ public class VentanaEquipos extends javax.swing.JFrame {
             gbc.weighty*=100;
             gbc.gridx = 0;
             gbc.gridy++;
+        }
+    }
+    
+    public void editarJugador(Jugador j){
+        Equipo e = liga.getEquipo(index);
+        int i = e.buscaJugador(j.getNombre());
+        System.out.println(i);
+        VentanaJugador vj = new VentanaJugador(this, j);
+        
+        if(vj.getJugador()!=null){
+            e.setJugador(i, vj.getJugador());
+            actualizaJugadores(e);
         }
     }
     

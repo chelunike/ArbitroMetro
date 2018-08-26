@@ -2,6 +2,7 @@ package arbitrometro;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -66,6 +67,9 @@ public class Jugador implements Serializable {
         this.lugarNaci = lugarNaci;
     }
     
-    
+    @Override
+    public String toString(){
+        return nombre+" "+apellidos+", "+fechaNaci.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))+", "+lugarNaci;
+    }
     
 }

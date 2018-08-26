@@ -37,10 +37,17 @@ public class Equipo  implements Serializable {
     }
     
     //Metodos
+    public void addJugador(Jugador j){
+        jugadores.add(j);
+    }
     
     public void añadirJugador(String nombre, LocalDate fechaNacimiento){
         Jugador j = new Jugador(nombre, fechaNacimiento);
         jugadores.add(j);
+    }
+    
+    public void setJugador(int index, Jugador j){
+        jugadores.set(index, j);
     }
     
     public void eliminarJugador(Jugador j){
