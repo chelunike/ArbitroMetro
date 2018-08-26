@@ -38,9 +38,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabelPartido" max="32767" attributes="0"/>
                   <Component id="jPanelBotonera" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -101,7 +102,8 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="jLabelPartido" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jComBoxEquipo1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComBoxEquipo2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -119,7 +121,7 @@
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPaneEquipo2" pref="166" max="32767" attributes="0"/>
+                  <Component id="jScrollPaneEquipo2" pref="162" max="32767" attributes="0"/>
                   <Component id="jScrollPaneEquipo1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -136,7 +138,7 @@
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPaneTarj1" pref="63" max="32767" attributes="0"/>
+                  <Component id="jScrollPaneTarj1" pref="62" max="32767" attributes="0"/>
                   <Component id="jScrollPane2" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -161,6 +163,7 @@
         </Property>
       </Properties>
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;&gt;(liga.getArrayEquipos())"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
@@ -171,6 +174,7 @@
         </Property>
       </Properties>
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;&gt;(liga.getArrayEquipos())"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
@@ -446,6 +450,12 @@
     <Component class="javax.swing.JCheckBox" name="jCheckBoxE2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ausente"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelPartido">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Partido"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -90,8 +90,18 @@ public class VentanaEquipos extends javax.swing.JFrame {
         jScrollPanelEquipos.setViewportView(jListEquipos);
 
         jButtonAddEquipo.setText("Añadir");
+        jButtonAddEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddEquipoActionPerformed(evt);
+            }
+        });
 
         jButtonRemoveEquipo.setText("Eliminar");
+        jButtonRemoveEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoveEquipoActionPerformed(evt);
+            }
+        });
 
         jLabelNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelNombre.setText("Nombre");
@@ -170,7 +180,6 @@ public class VentanaEquipos extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonAddJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonRemoveJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -240,6 +249,7 @@ public class VentanaEquipos extends javax.swing.JFrame {
             int i = e.buscaJugador((String) jComboBoxCapi.getSelectedItem());
             if(i>0)
                 e.setCapitan(e.getJugador(i));
+            actualizaListaEquipos();
         }else
             JOptionPane.showMessageDialog(this, 
                     "Error: Nombre no introducido\n Introduce un nombre ", "Tampoco es tanto:v", 
@@ -268,13 +278,48 @@ public class VentanaEquipos extends javax.swing.JFrame {
                 borrador.add(i);
             }
         }
-        System.out.println(s);
+        int n = JOptionPane.showConfirmDialog(this, 
+                    "¿Seguro que quieres borrar al jugador/es?\n"+s, "Y se fue", 
+                    JOptionPane.YES_NO_OPTION);
+        if(n == 0)
+            for(int j:borrador)
+                e.eliminarJugador(e.getJugador(j));
+        actualizaJugadores(e);
     }//GEN-LAST:event_jButtonRemoveJugadorActionPerformed
+
+    private void jButtonAddEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddEquipoActionPerformed
+        // Añadir Equipoç
+        Equipo e = new Equipo("Equipo "+(liga.getEquipos().size()+1));
+        if(liga.getEquipos().size()<=0)
+            index=0;
+        liga.addEquipo(e);
+        actualizaEquipo(liga.getEquipo(index));
+        
+        actualizaListaEquipos();
+    }//GEN-LAST:event_jButtonAddEquipoActionPerformed
+
+    private void jButtonRemoveEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveEquipoActionPerformed
+        // Eliminar Equipo
+        Equipo e = liga.getEquipo(index);
+        int n = JOptionPane.showConfirmDialog(this, 
+                    "¿Seguro que quieres borrar al equipo "+e.getNombre()+" ?\n", "Y uno menos", 
+                    JOptionPane.YES_NO_OPTION);
+        if(n == 0){
+            liga.eliminarEquipo(e);
+            if(liga.getEquipos().size()>0){
+                index=0;
+                jListEquipos.setSelectedIndex(index);
+                actualizaEquipo(liga.getEquipo(index));
+            }else
+                enabledEquipo(false);
+            actualizaListaEquipos();
+        }
+    }//GEN-LAST:event_jButtonRemoveEquipoActionPerformed
     
     
     public void listaEquiposSelect(){
         index = jListEquipos.getSelectedIndex();
-        System.out.println("Index: "+index+" Value "+jListEquipos.getSelectedValue());
+        //System.out.println("Index: "+index+" Value "+jListEquipos.getSelectedValue());
         actualizaEquipo(liga.getEquipo(index));
     }
     
@@ -299,13 +344,15 @@ public class VentanaEquipos extends javax.swing.JFrame {
     }
     
     public void actualizaJugadores(Equipo e){
+        jugadoresSelect = new ArrayList<>();
+        jButtonRemoveJugador.setEnabled(!e.getJugadores().isEmpty());
+        
         jComboBoxCapi.removeAllItems(); 
         for(Jugador j: e.getJugadores())
             jComboBoxCapi.addItem(j.getNombre());
         jComboBoxCapi.setSelectedItem(e.getCapitan().getNombre());
         
         jPanelJugadores.removeAll();
-        repaint();
         
         String[] head = {"", "Nombre", "Apellidos", "FechaNac", "LugarNac", "Editar"};
         
@@ -354,12 +401,13 @@ public class VentanaEquipos extends javax.swing.JFrame {
             gbc.gridx = 0;
             gbc.gridy++;
         }
+        repaint();
+        pack();
     }
     
     public void editarJugador(Jugador j){
         Equipo e = liga.getEquipo(index);
         int i = e.buscaJugador(j.getNombre());
-        System.out.println(i);
         VentanaJugador vj = new VentanaJugador(this, j);
         
         if(vj.getJugador()!=null){
@@ -372,15 +420,19 @@ public class VentanaEquipos extends javax.swing.JFrame {
         jButtonAddJugador.setEnabled(e);
         jButtonRemoveJugador.setEnabled(e);
         jButtonGuardar.setEnabled(e);
+        jButtonRemoveEquipo.setEnabled(e);
         jTextFieldCorreo.setEnabled(e);
         jTextFieldNombre.setEnabled(e);
         jTextFieldTelefono.setEnabled(e);
+        jComboBoxCapi.setEnabled(e);
         if(!e){
             jTextFieldCorreo.setText("");
             jTextFieldNombre.setText("");
             jTextFieldTelefono.setText("");
             jPanelJugadores.removeAll();
+            jComboBoxCapi.removeAllItems();
         }
+        repaint();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

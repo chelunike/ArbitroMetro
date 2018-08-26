@@ -201,7 +201,7 @@ public class VentanaJugador extends javax.swing.JDialog {
             jugador.setApellidos(jTextFieldApellidos.getText());
             jugador.setLugarNaci(jTextFieldLugNac.getText());
             this.setVisible(false);
-            System.out.println(jugador.toString());
+            //System.out.println(jugador.toString());
         }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 

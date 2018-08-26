@@ -3,11 +3,10 @@ package ventanas;
 import arbitrometro.*;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
-import javax.swing.SpinnerModel;
-import javax.swing.event.ChangeListener;
 
 /**
  * @author chelunike
@@ -25,10 +24,11 @@ public class VentanaPatidos extends javax.swing.JFrame {
         jornada = l.getJornada(index);
         index = 0;
         
-        
         //Inicializacion de Componentes
         initComponents();
         setLocationRelativeTo(parent);
+        setTitle(jornada.getTitle()+" | Administrador Jornadas | Fecha: "+
+                jornada.getFecha().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         
         if(jornada.numPartidos() > 0)
             actualizaPartido(jornada.getPartido(index));
@@ -43,8 +43,8 @@ public class VentanaPatidos extends javax.swing.JFrame {
     private void initComponents() {
 
         jSpinnerGoles = new javax.swing.JSpinner();
-        jComBoxEquipo1 = new javax.swing.JComboBox<>();
-        jComBoxEquipo2 = new javax.swing.JComboBox<>();
+        jComBoxEquipo1 = new javax.swing.JComboBox<>(liga.getArrayEquipos());
+        jComBoxEquipo2 = new javax.swing.JComboBox<>(liga.getArrayEquipos());
         jLabelVS = new javax.swing.JLabel();
         jLabelGoles1 = new javax.swing.JLabel();
         jLabelGoles2 = new javax.swing.JLabel();
@@ -73,6 +73,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
         jButtonNuevo = new javax.swing.JButton();
         jCheckBoxE1 = new javax.swing.JCheckBox();
         jCheckBoxE2 = new javax.swing.JCheckBox();
+        jLabelPartido = new javax.swing.JLabel();
 
         jSpinnerGoles.setMinimumSize(new java.awt.Dimension(31, 38));
 
@@ -198,6 +199,9 @@ public class VentanaPatidos extends javax.swing.JFrame {
 
         jCheckBoxE2.setText("Ausente");
 
+        jLabelPartido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelPartido.setText("Partido");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,6 +209,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelPartido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelBotonera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -251,7 +256,8 @@ public class VentanaPatidos extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jLabelPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComBoxEquipo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComBoxEquipo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -266,7 +272,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
                     .addComponent(jLabelGoles2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneEquipo2, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneEquipo2, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                     .addComponent(jScrollPaneEquipo1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -280,7 +286,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
                     .addComponent(jLabelTarj2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneTarj1, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneTarj1, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -470,6 +476,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComBoxEquipo2;
     private javax.swing.JLabel jLabelGoles1;
     private javax.swing.JLabel jLabelGoles2;
+    private javax.swing.JLabel jLabelPartido;
     private javax.swing.JLabel jLabelTarj1;
     private javax.swing.JLabel jLabelTarj2;
     private javax.swing.JLabel jLabelVS;

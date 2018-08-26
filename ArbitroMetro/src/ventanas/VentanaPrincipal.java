@@ -220,24 +220,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButtonAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdelanteActionPerformed
         // Adelante
-        System.out.println("Avanty");
         if(index+1 < liga.numJornadas())
             index++;
         else
             index = 0;
         this.actualizaJornada(liga.getJornada(index));
-        System.out.println(""+index);
     }//GEN-LAST:event_jButtonAdelanteActionPerformed
 
     private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
         // Atras
-        System.out.println("R");
         if(index-1 >= 0)
             index--;
         else
             index = liga.numJornadas()-1;
         this.actualizaJornada(liga.getJornada(index));
-        System.out.println(""+index);
     }//GEN-LAST:event_jButtonAtrasActionPerformed
 
     private void jButtonNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevaActionPerformed
@@ -247,21 +243,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if(nj.getJornada() != null)
             liga.addJornada(nj.getJornada());
         if(liga.numJornadas()>0){
-            index = 0;
+            index = liga.numJornadas()-1;
             actualizaJornada(liga.getJornada(index));
         }
+        jButtonEditarActionPerformed(evt);
     }//GEN-LAST:event_jButtonNuevaActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         // Editar Jornada
         new VentanaPatidos(this, true, liga, index);
-        
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // Eliminar Jornada
         int s = JOptionPane.showConfirmDialog(this, 
-                    "¿Seguro que quieres eliminar la Jornada:"+liga.getJornada(index)+" ?", ":(", 
+                    "¿Seguro que quieres eliminar la Jornada: "+liga.getJornada(index).getTitle()+" ?", ":(", 
                     JOptionPane.YES_NO_OPTION);
         if(s == 0)
             liga.eliminarJornada(index);
@@ -339,7 +335,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if(!c){
             jLabelFecha.setText("");
             jLabelTitulo.setText("");
+            jPanelJornada.removeAll();
         }
+        repaint();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
