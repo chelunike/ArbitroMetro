@@ -256,16 +256,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // Eliminar Jornada
-        int s = JOptionPane.showConfirmDialog(this, 
-                    "¿Seguro que quieres eliminar la Jornada: "+liga.getJornada(index).getTitle()+" ?", ":(", 
-                    JOptionPane.YES_NO_OPTION);
-        if(s == 0)
-            liga.eliminarJornada(index);
-        if(liga.numJornadas()>0){
-            index = 0;
-            actualizaJornada(liga.getJornada(index));
-        }else
-            sinJornada();
+            int s = JOptionPane.showConfirmDialog(this, 
+                        "¿Seguro que quieres eliminar la Jornada: "+liga.getJornada(index).getTitle()+" ?", ":(", 
+                        JOptionPane.YES_NO_OPTION);
+            if(s == 0)
+                liga.eliminarJornada(index);
+            if(liga.numJornadas()>0){
+                index = 0;
+                actualizaJornada(liga.getJornada(index));
+            }else
+                sinJornada();
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

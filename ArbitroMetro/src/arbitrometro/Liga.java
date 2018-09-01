@@ -72,7 +72,6 @@ public class Liga implements Serializable {
     
     public String[] getArrayEquipos(){
         String[] l = new String[equipos.size()];
-        System.out.println("Lenth: "+equipos.size());
         for(int i=0; i<l.length; i++)
             l[i] = equipos.get(i).toString();
         return l;

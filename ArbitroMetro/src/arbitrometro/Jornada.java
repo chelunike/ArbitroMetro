@@ -34,6 +34,10 @@ public class Jornada implements Serializable {
         return partidos.get(index);
     }
     
+    public void eliminarPartido(int index){
+        partidos.remove(index);
+    }
+    
     //Get y Set
 
     public String getTitle() {
@@ -55,5 +59,6 @@ public class Jornada implements Serializable {
     public ArrayList<Partido> getPartidos() {
         return partidos;
     }
+    
    
 }

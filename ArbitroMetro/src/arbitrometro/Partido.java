@@ -46,29 +46,55 @@ public class Partido implements Serializable {
             goles1.add(g);
     }
     
+    public Goles getGol1(int index){
+        return goles1.get(index);
+    }
+    
+    public void eliminaGol1(int index){
+        goles1.remove(index);
+    }
+    
     public void addGolEquipo2(Goles g){
         if(!ausente2)
             goles2.add(g);
     }
     
+    public Goles getGol2(int index){
+        return goles2.get(index);
+    }
+    
+    public void eliminaGol2(int index){
+        goles2.remove(index);
+    }
+    
     public void equipo1Ausente(boolean ausente){
-        if(ausente != ausente1){
-            goles1 = new ArrayList<>();
-            goles2 = new ArrayList<>();
-            if(ausente && !ausente2)
+        goles1 = new ArrayList<>();
+        goles2 = new ArrayList<>();
+        if(ausente != ausente2)
+            if(ausente)
                 goles2.add(new Goles(Liga.yo, 3));
-        }
+            else
+                goles1.add(new Goles(Liga.yo, 3));
         this.ausente1 = ausente;
     }
     
     public void equipo2Ausente(boolean ausente){
-        if(ausente != ausente2){
-            goles1 = new ArrayList<>();
-            goles2 = new ArrayList<>();
-            if(ausente && !ausente1)
+        goles1 = new ArrayList<>();
+        goles2 = new ArrayList<>();
+        if(ausente != ausente1)
+            if(ausente)
                 goles1.add(new Goles(Liga.yo, 3));
-        }
+            else
+                goles2.add(new Goles(Liga.yo, 3));
         this.ausente2 = ausente;
+    }
+    
+    public void addTarjeta1(Tarjeta t){
+        tarjetas1.add(t);
+    }
+    
+    public void addTarjeta2(Tarjeta t){
+        tarjetas2.add(t);
     }
     
     //Get y Set

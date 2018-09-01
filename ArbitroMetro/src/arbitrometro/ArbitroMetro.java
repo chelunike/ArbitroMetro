@@ -63,6 +63,8 @@ public class ArbitroMetro {
         Goles g1 = new Goles(e1.getJugador(1), 2);
         Goles g2 = new Goles(e1.getJugador(2), 5);
         
+        p2.addTarjeta1(new Tarjeta(e1.getJugador(0), "Roja"));
+        
         p1.addGolEquipo1(g1);
         p1.addGolEquipo2(g2);
         p2.addGolEquipo2(g2);
@@ -72,7 +74,7 @@ public class ArbitroMetro {
         j1.addPartido(p2);
         j2.addPartido(p2);
         
-        //p1.equipo1Ausente(true);
+        p1.equipo1Ausente(true);
         //p1.equipo2Ausente(true);
         j1.addPartido(p2);
         

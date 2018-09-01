@@ -7,16 +7,32 @@ import java.io.Serializable;
  */
 public class Tarjeta implements Serializable {
     //Atributos
+    private Jugador jugador;
     private String color;
     
     //Constructor
-    public Tarjeta(String color){
+    public Tarjeta(Jugador j, String color){
+        jugador = j;
         this.color = color;
     }
     
-    //Metodo
-    public String getColor(){
+    //Get y Set
+
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
+
+    public String getColor() {
         return color;
     }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+    
     
 }
