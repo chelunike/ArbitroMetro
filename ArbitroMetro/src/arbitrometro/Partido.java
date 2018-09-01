@@ -97,6 +97,14 @@ public class Partido implements Serializable {
         tarjetas2.add(t);
     }
     
+    public void removeTarjeta1(int index){
+        tarjetas1.remove(index);
+    }
+    
+    public void removeTarjeta2(int index){
+        tarjetas2.remove(index);
+    }
+    
     //Get y Set
 
     public Equipo getEquipo1() {

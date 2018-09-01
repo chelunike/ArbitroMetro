@@ -32,14 +32,15 @@ public class ArbitroMetro {
         //InitVentanilla init = new InitVentanilla("Liga Domingo Savio");
         //init.setVisible(true);
         
+        
         Liga c = new Liga("Liguilla");
         
-        
-        Equipo e1 = new Equipo("Fucm Logic");
+        /*  --- Datos PreFabricados de Prueba ---
+        Equipo e1 = new Equipo("Potato");
         
         e1.añadirJugador("Antonio", LocalDate.now());
-        e1.añadirJugador("Charlie", LocalDate.now());
-        e1.añadirJugador("Ferchu", LocalDate.now());
+        e1.añadirJugador("Chema", LocalDate.now());
+        e1.añadirJugador("Mario", LocalDate.now());
         e1.añadirJugador("Montes", LocalDate.now());
         
         Equipo e2 = new Equipo("Dream Team");
@@ -80,20 +81,20 @@ public class ArbitroMetro {
         
         c.addJornada(j1);
         c.addJornada(j2);
-        
+        */
         
         String str1 = "javax.swing.plaf.metal.MetalLookAndFeel";
         String str2 = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
         String str3 = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
         String str4 = "com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel";
         String str5 = "com.sun.java.swing.plaf.motif.MotifLookAndFeel";
-        String str6 = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
+        String str6 = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";//For Ubuntu :)
         
         try {
             UIManager.setLookAndFeel(str6);
             //SwingUtilities.updateComponentTreeUI(this);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error aplicar estilos: "+e);
         }
         JFrame.setDefaultLookAndFeelDecorated(true);
         
@@ -101,6 +102,7 @@ public class ArbitroMetro {
         
         vp.setVisible(true);
         
+        // Un poco de arte en el código ;)
            ;;  ;;
            ;;  ;;
         

@@ -430,7 +430,10 @@ public class VentanaPatidos extends javax.swing.JFrame {
             index = jornada.numPartidos()-1;
             actualizaPartido(jornada.getPartido(index));
         }else
-            System.out.println("No hay equipos suficientes");
+            JOptionPane.showMessageDialog(this, 
+                    " Debe haber dos o más equipos para jugar un partido",
+                    "Info Básica :)",
+                    JOptionPane.INFORMATION_MESSAGE);
         
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
@@ -537,7 +540,15 @@ public class VentanaPatidos extends javax.swing.JFrame {
 
     private void jButtonTarj1RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTarj1RemoveActionPerformed
         // Remove Tarjeta 1
-        
+        Partido p = jornada.getPartido(index);
+        if(selectionIndexT1 != -1){
+            int s = JOptionPane.showConfirmDialog(this, 
+                        "¿Seguro que quieres eliminar la "+(selectionIndexT1+1)+"ª tarjeta ?", ":(", 
+                        JOptionPane.YES_NO_OPTION);
+            if(s == 0)
+                p.removeTarjeta1(selectionIndexT1);
+            actualizaTarj1(p);
+        }
     }//GEN-LAST:event_jButtonTarj1RemoveActionPerformed
 
     private void jButtonTarj2AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTarj2AddActionPerformed
@@ -550,8 +561,15 @@ public class VentanaPatidos extends javax.swing.JFrame {
 
     private void jButtonTarj2RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTarj2RemoveActionPerformed
         // Remove Tarjeta 2
-        
-        
+        Partido p = jornada.getPartido(index);
+        if(selectionIndexT2 != -1){
+            int s = JOptionPane.showConfirmDialog(this, 
+                        "¿Seguro que quieres eliminar la "+(selectionIndexT2+1)+"ª tarjeta ?", ":(", 
+                        JOptionPane.YES_NO_OPTION);
+            if(s == 0)
+                p.removeTarjeta1(selectionIndexT2);
+            actualizaTarj2(p);
+        }
     }//GEN-LAST:event_jButtonTarj2RemoveActionPerformed
     
     private void golSpinner1(Goles g, int num, int n){
@@ -658,7 +676,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
             
             //Creacion de eventos
             MouseAdapter selectionEvt = new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
                     VentanaPatidos.this.selectionIndex1 = gbc.gridy-2;
                     System.out.println("Clicked 1: "+selectionIndex1);
                 }
@@ -668,6 +686,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     VentanaPatidos.this.golJugador1(g, cb, gbc.gridy-2);
+                    VentanaPatidos.this.selectionIndex1 = gbc.gridy-2;
                 }
             };
             
@@ -677,6 +696,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
                     if((int)s.getValue()<0)
                         s.setValue(0);
                     VentanaPatidos.this.golSpinner1(g, (int)s.getValue(), gbc.gridy-2);
+                    VentanaPatidos.this.selectionIndex1 = gbc.gridy-2;
                 }
             };
             
@@ -743,7 +763,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
             
             //Creacion de eventos
             MouseAdapter selectionEvt = new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
                     VentanaPatidos.this.selectionIndex2 = gbc.gridy-2;
                     System.out.println("Clicked 2: "+selectionIndex2);
                 }
@@ -753,6 +773,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     VentanaPatidos.this.golJugador2(g, cb, gbc.gridy-2);
+                    VentanaPatidos.this.selectionIndex2 = gbc.gridy-2;
                 }
             };
             
@@ -762,6 +783,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
                     if((int)s.getValue()<0)
                         s.setValue(0);
                     VentanaPatidos.this.golSpinner2(g, (int)s.getValue(), gbc.gridy-2);
+                    VentanaPatidos.this.selectionIndex2 = gbc.gridy-2;
                 }
             };
             
@@ -793,7 +815,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
         String[] jugadores = p.getEquipo1().getArrayNomJugadores();
         String[] colores = {"Amarilla", "Roja"};
         
-        selectionIndex2 = -1;
+        selectionIndexT1 = -1;
         
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.NORTH;
@@ -826,7 +848,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
             MouseAdapter selectionEvt = new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {
                     VentanaPatidos.this.selectionIndexT1 = gbc.gridy-2;
-                    System.out.println("Clicked 2: "+selectionIndexT1);
+                    System.out.println("Clicked 1: "+selectionIndexT1);
                 }
             };
             
@@ -835,6 +857,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent e) {
                     //VentanaPatidos.this
                     System.out.println("Combo num: "+gbc.gridy);
+                    VentanaPatidos.this.selectionIndexT1 = gbc.gridy-2;
                 }
             };
             
@@ -857,7 +880,74 @@ public class VentanaPatidos extends javax.swing.JFrame {
     }
     
     public void actualizaTarj2(Partido p){
-    
+        jPanelTarj2.removeAll();
+        repaint();
+        
+        String[] head = {"Jugador", "Tarjeta"};
+        String[] jugadores = p.getEquipo2().getArrayNomJugadores();
+        String[] colores = {"Amarilla", "Roja"};
+        
+        selectionIndexT2 = -1;
+        
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 0.9;
+        gbc.weighty = 1.0;
+        gbc.insets = new Insets(0, 5, 10, 5);
+        gbc.ipadx = 5;
+        gbc.ipady = 5;
+        gbc.gridx=0;
+        gbc.gridy=0;
+        
+        for(String col: head){
+            jPanelTarj2.add(new JLabel(col), gbc);
+            gbc.gridx++;
+        }
+        gbc.gridy++;
+        gbc.gridx=0;
+        gbc.weighty=100;
+        for(Tarjeta t:p.getTarjetas2()){
+            JComboBox cj;
+            JComboBox cl = new JComboBox(colores);
+            System.out.println("Tarjetas 2 :( ");
+            cj = new JComboBox(jugadores);
+            
+            cj.setSelectedItem(t.getJugador().getNombre());
+            cl.setSelectedItem(t.getColor());
+            
+            //Creacion de eventos
+            MouseAdapter selectionEvt = new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    VentanaPatidos.this.selectionIndexT2 = gbc.gridy-2;
+                    System.out.println("Clicked 2: "+selectionIndexT2);
+                }
+            };
+            
+            ActionListener comboBox = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    //VentanaPatidos.this
+                    System.out.println("Combo num: "+gbc.gridy);
+                    VentanaPatidos.this.selectionIndexT2 = gbc.gridy-2;
+                }
+            };
+            
+            //Asignacion de eventos
+            cj.addActionListener(comboBox);
+            cj.addMouseListener(selectionEvt);
+            cj.addMouseListener(selectionEvt);
+            cl.addActionListener(comboBox);
+            
+            jPanelTarj2.add(cj, gbc);
+            gbc.gridx++;
+            
+            jPanelTarj2.add(cl, gbc);
+            
+            gbc.weighty*=100;
+            gbc.gridx = 0;
+            gbc.gridy++;
+        }
     }
     
     public void enablePartido(boolean e){
