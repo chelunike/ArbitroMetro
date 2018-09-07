@@ -13,14 +13,12 @@ import java.util.ArrayList;
 public class Clasificatorio implements Serializable {
     // Atributos
     private ArrayList <Equipo> equipos;
-    private ArrayList <Jornada> jornadas;
+    private ArrayList <Partido> partidos;
     
     // Constructor
     public Clasificatorio(){
         equipos = new ArrayList();
-        jornadas = new ArrayList();
     }
-    
      
     //Metodos
     

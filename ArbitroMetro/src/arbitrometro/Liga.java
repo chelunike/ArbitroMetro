@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class Liga implements Serializable {
     //Constantes
     public static final Jugador yo = new Jugador("Yo", LocalDate.now());
+    public static final String[] HEADCLASI = {"Equipo", "PG", "PE", "PP", "Ptos", " GF", "GC", "PJ"};
     
     //Atributos
     private String nombre;
@@ -75,6 +76,66 @@ public class Liga implements Serializable {
         for(int i=0; i<l.length; i++)
             l[i] = equipos.get(i).toString();
         return l;
+    }
+    
+    // Clasificacion
+    public int[] getEstadisticaPorEquipo(Equipo e){
+        int n[] = new int[5];
+        int pg=0;// 0 Partidos Ganados
+        int pe=0;// 1 Partidos Empatados
+        int pp=0;// 2 Partidos Perdidos
+        int gf=0;// 3 Goles favor
+        int gc=0;// 4 Goles contra
+        int gp, gv;
+        for(Jornada j:jornadas)
+            for(Partido p: j.getPartidos()){
+                if(p.getEquipo1() == e){
+                    gp = p.totalGoles1();
+                    gv = p.totalGoles2();
+                }else if (p.getEquipo2() == e){
+                    gp = p.totalGoles2();
+                    gv = p.totalGoles1();
+                }else
+                    continue;
+        
+                    System.out.println("Search 2 "+e.getNombre()+" Find: "+p.getEquipo2().getNombre()+" - "+gp+"-"+gv );        if(gp > gv){
+                    pg ++;
+                    gf += pg;
+                    gc += gv;
+                }else if(gp < gv){
+                    pp ++;
+                    gf += pg;
+                    gc += gv;
+                }else
+                    pe++;
+            }
+        n[0] = pg;
+        n[1] = pe;
+        n[2] = pp;
+        n[3] = gf;
+        n[4] = gc;
+        return n;   
+    }
+    
+    public String[][] getClasificacion(){
+        String[][] tabla = new String[equipos.size()][8];
+        for(int i=0; i<tabla.length; i++){
+            String[] column = tabla[i];
+            Equipo e = equipos.get(i);
+            //Sacamos los datos
+            int[] s = getEstadisticaPorEquipo(e);
+
+            //Intruduciomos los datos
+            column[0] = e.getNombre();
+            column[1] = ""+s[0];
+            column[2] = ""+s[1];
+            column[3] = ""+s[2];
+            column[4] = ""+((s[0]*3)+(s[1]*2));
+            column[5] = ""+s[3];
+            column[6] = ""+s[4];
+            column[7] = ""+(s[0]+s[1]+s[2]);
+        }
+       return tabla;
     }
     
     public String toString(){

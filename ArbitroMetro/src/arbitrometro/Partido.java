@@ -169,4 +169,20 @@ public class Partido implements Serializable {
         return ausente2;
     }
     
+    //Algunos Calculos
+    public int totalGoles1(){
+        int n=0;
+        for(Goles g:goles1)
+            n += g.getGoles();
+        return n;
+    }
+    
+    public int totalGoles2(){
+        int n=0;
+        for(Goles g:goles2)
+            n += g.getGoles();
+        return n;
+    }
+    
+    
 }

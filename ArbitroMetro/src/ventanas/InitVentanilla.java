@@ -27,7 +27,7 @@ public class InitVentanilla extends JFrame{
         super(titulo);
         
         initComponents();
-        
+        setLocationRelativeTo(null);
         
     }
     

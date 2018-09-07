@@ -1,10 +1,10 @@
 package arbitrometro;
 
-import ventanas.*;
+import herramientas.IO;
 import herramientas.Serializacion;
 import java.time.LocalDate;
+import ventanas.*;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 /**
@@ -29,13 +29,14 @@ public class ArbitroMetro {
         System.out.println("\t Por chelunike y antoniocastilla (acc)");
         System.out.println("\t Team Potato :) ");
         
-        //InitVentanilla init = new InitVentanilla("Liga Domingo Savio");
-        //init.setVisible(true);
-        
+        setTheme();
+                
+        InitVentanilla init = new InitVentanilla("Liga Domingo Savio");
+        init.setVisible(true);
         
         Liga c = new Liga("Liguilla");
         
-        /*  --- Datos PreFabricados de Prueba ---
+        /*  --- Datos PreFabricados de Prueba --- */
         Equipo e1 = new Equipo("Potato");
         
         e1.añadirJugador("Antonio", LocalDate.now());
@@ -81,7 +82,34 @@ public class ArbitroMetro {
         
         c.addJornada(j1);
         c.addJornada(j2);
-        */
+        
+        //*/
+        
+        /*for(String cell: Liga.HEADCLASI)
+            System.out.print(cell+"\t");
+        System.out.println("");
+        for(String[] row: c.getClasificacion()){
+            for(String cell: row)
+                System.out.print(cell+"\t");
+            System.out.println("");
+        }*/
+        
+        //Serializacion.serializarObjeto(c, "ligaTes.liga");
+        
+        //VentanaPrincipal vp = new VentanaPrincipal(c);
+        
+        //vp.setVisible(true);
+        
+        // Un poco de arte en el código ;)
+           ;;  ;;
+           ;;  ;;
+        
+        ;;        ;;
+         ;;;;;;;;;; 
+        
+    }
+    
+    public static void setTheme(){
         
         String str1 = "javax.swing.plaf.metal.MetalLookAndFeel";
         String str2 = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
@@ -98,18 +126,6 @@ public class ArbitroMetro {
         }
         JFrame.setDefaultLookAndFeelDecorated(true);
         
-        VentanaPrincipal vp = new VentanaPrincipal(c);
-        
-        vp.setVisible(true);
-        
-        // Un poco de arte en el código ;)
-           ;;  ;;
-           ;;  ;;
-        
-        ;;        ;;
-         ;;;;;;;;;; 
-        
     }
-    
     
 }
