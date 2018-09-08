@@ -61,22 +61,19 @@ public class IO {
         return "";
     }
 
-    public static void escribe(String nombre, String texto) {
-
+    public static boolean escribe(String nombre, String texto) {
         File archivo = new File(nombre);
         try {
-
             BufferedWriter miBuffer;
             if (archivo.exists()) {
                 int opcion = JOptionPane.showConfirmDialog(null,
                         "El fichero ya existe. ¿Desea sobreescribirlo?", "Alerta",
                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-
                 if (opcion == 0) {
                     miBuffer = new BufferedWriter(new FileWriter(archivo));
                     miBuffer.write(texto);
                 } else {
-                    return;
+                    return true;
                 }
             } else {
                 miBuffer = new BufferedWriter(new FileWriter(archivo));
@@ -84,10 +81,11 @@ public class IO {
                 miBuffer.write(texto);
             }
             miBuffer.close();
-
+            return true;
         } catch (IOException ex) {
             //Logger.getLogger(IO.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Error IOException en escribe()\n" + ex.toString());
+            return false;
         }
     }
 

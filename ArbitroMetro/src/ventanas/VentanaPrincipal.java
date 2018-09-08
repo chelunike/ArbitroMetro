@@ -23,6 +23,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // Inicializacon de la ventana
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setTitle("ArbitroMetro | Liga: "+liga.getNombre());
         
         if(l.numJornadas()>0)
             this.actualizaJornada(l.getJornada(index));

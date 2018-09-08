@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * @author yo
  */
-public class Jugador implements Serializable {
+public class Jugador implements Serializable, Comparable<Jugador> {
     //Atributos
     private String nombre;
     private String apellidos;
@@ -67,9 +68,20 @@ public class Jugador implements Serializable {
         this.lugarNaci = lugarNaci;
     }
     
+    public int getGoles(){
+        return numGoles;
+    }
+    
     @Override
     public String toString(){
         return nombre+" "+apellidos+", "+fechaNaci.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))+", "+lugarNaci;
+    }
+    
+    // --- Ordenacion ---
+    
+    @Override
+    public int compareTo(Jugador o) {
+        return nombre.compareToIgnoreCase(o.getNombre());
     }
     
 }

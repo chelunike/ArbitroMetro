@@ -1,6 +1,5 @@
 package ventanas;
 
-import arbitrometro.ArbitroMetro;
 import arbitrometro.Liga;
 import herramientas.Serializacion;
 import java.awt.event.ActionEvent;
@@ -149,7 +148,7 @@ public class InitVentanilla extends JFrame{
         }catch (Exception ex){
             System.out.println("Error alabrir liga: "+ex);
             JOptionPane.showMessageDialog(this, "Error al abrir el archivo liga", "Error :(", JOptionPane.ERROR_MESSAGE);
-            this.abrirBtActionPerformed(evt);
+            //this.abrirBtActionPerformed(evt);
         }
     }
     

@@ -20,6 +20,7 @@ public class Liga implements Serializable {
     //Constantes
     public static final Jugador yo = new Jugador("Yo", LocalDate.now());
     public static final String[] HEADCLASI = {"Equipo", "PG", "PE", "PP", "Ptos", " GF", "GC", "PJ"};
+    public static final String[] HEADGOLES = {"Jugadores", "Goles"};
     
     //Atributos
     private String nombre;
@@ -78,6 +79,10 @@ public class Liga implements Serializable {
         return l;
     }
     
+    public String getNombre(){
+        return nombre;
+    }
+    
     // Clasificacion
     public int[] getEstadisticaPorEquipo(Equipo e){
         int n[] = new int[5];
@@ -117,6 +122,28 @@ public class Liga implements Serializable {
         return n;   
     }
     
+    public ArrayList<Jugador> getEstadisticasJugadores(){
+        ArrayList<Jugador> jugadores = new ArrayList<>();
+        for(Equipo e: equipos)
+            jugadores.addAll(e.getJugadores());
+        for(Jornada j:jornadas)
+            for(Partido p: j.getPartidos()){
+                int n=0;
+                for(Goles g:p.getGoles1()){
+                    n = jugadores.indexOf(g.getPepe());
+                    if(n>=0)
+                        jugadores.get(n).addGol(g.getGoles());
+                }
+                for(Goles g:p.getGoles2()){
+                    n = jugadores.indexOf(g.getPepe());
+                    if(n>=0)
+                        jugadores.get(n).addGol(g.getGoles());
+                }
+            }
+        jugadores.sort(new JugGoles());
+        return jugadores;
+    }
+    
     public String[][] getClasificacion(){
         String[][] tabla = new String[equipos.size()][8];
         for(int i=0; i<tabla.length; i++){
@@ -136,6 +163,19 @@ public class Liga implements Serializable {
             column[7] = ""+(s[0]+s[1]+s[2]);
         }
        return tabla;
+    }
+    
+    public String[][] getGoleadores(int n){
+        ArrayList<Jugador> jugs = getEstadisticasJugadores();
+        if(n>jugs.size())
+            n = jugs.size();
+        
+        String[][] gols = new String[n][2];
+        for(int i=0; i<n; i++){
+            gols[i][0] = jugs.get(i).getNombre();
+            gols[i][1] = ""+jugs.get(i).getGoles();
+        }
+        return gols;
     }
     
     public String toString(){
