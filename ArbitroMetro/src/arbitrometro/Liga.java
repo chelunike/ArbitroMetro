@@ -82,6 +82,19 @@ public class Liga implements Serializable {
     public String getNombre(){
         return nombre;
     }
+
+    public void setJornadas(ArrayList<Jornada> jornadas) {
+        this.jornadas = jornadas;
+    }
+
+    public ArrayList<Jornada> getJornadas() {
+        return jornadas;
+    }
+
+    public void setEquipos(ArrayList<Equipo> equipos) {
+        this.equipos = equipos;
+    }
+    
     
     // Clasificacion
     public int[] getEstadisticaPorEquipo(Equipo e){

@@ -14,6 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class InitVentanilla extends JFrame{
     //Atributos
+    private NuevaLiga ventanaNueva;
     
     //Atributos Componentes
     private javax.swing.JButton abrirBt;
@@ -24,6 +25,8 @@ public class InitVentanilla extends JFrame{
     //Constructor
     public InitVentanilla(String titulo){
         super(titulo);
+        
+        ventanaNueva = new NuevaLiga();
         
         initComponents();
         setLocationRelativeTo(null);
@@ -39,7 +42,7 @@ public class InitVentanilla extends JFrame{
         //Configuramos Ventana
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ArbitroMetro");
-        setAlwaysOnTop(true);
+        //setAlwaysOnTop(true);
         setBackground(new java.awt.Color(204, 204, 204));
         setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         setLocation(new java.awt.Point(0, 0));
@@ -131,30 +134,28 @@ public class InitVentanilla extends JFrame{
     public void abrirBtActionPerformed(ActionEvent evt){
 
         String ruta = this.getRutaFichero();
-        
-        try{
-            if(ruta == "")
-                throw new Exception("Ruta nula");
-            else if(new File(ruta).isDirectory())
-                throw new Exception("Ruta de un fichero");
-            
-            Liga l = (Liga)Serializacion.desSerializaObjeto(ruta);
-            
-            VentanaPrincipal p = new VentanaPrincipal(l);
-            
-            this.setVisible(false);
-            p.setVisible(true);
-            
-        }catch (Exception ex){
-            System.out.println("Error alabrir liga: "+ex);
-            JOptionPane.showMessageDialog(this, "Error al abrir el archivo liga", "Error :(", JOptionPane.ERROR_MESSAGE);
-            //this.abrirBtActionPerformed(evt);
-        }
+        if(ruta!="")
+            try{
+                if(new File(ruta).isDirectory())
+                    throw new Exception("Ruta de un fichero");
+
+                Liga l = (Liga)Serializacion.desSerializaObjeto(ruta);
+
+                VentanaPrincipal p = new VentanaPrincipal(l);
+
+                this.setVisible(false);
+                p.setVisible(true);
+
+            }catch (Exception ex){
+                System.out.println("Error alabrir liga: "+ex);
+                JOptionPane.showMessageDialog(this, "Error al abrir el archivo liga", "Error :(", JOptionPane.ERROR_MESSAGE);
+                //this.abrirBtActionPerformed(evt);
+            }
     }
     
     public void nuevoBtActionPerformed(ActionEvent evt){
-        System.out.println("Nueva Liga");
-        
+        if(!ventanaNueva.isVisible())
+            ventanaNueva.setVisible(true);
     }
     
 }

@@ -31,8 +31,8 @@ public class ArbitroMetro {
         
         setTheme();
                 
-//        InitVentanilla init = new InitVentanilla("Liga Domingo Savio");
-//        init.setVisible(true);
+        InitVentanilla init = new InitVentanilla("Liga Domingo Savio");
+        init.setVisible(true);
         
         Liga c = new Liga("Liguilla");
         
@@ -96,9 +96,8 @@ public class ArbitroMetro {
         
         Serializacion.serializarObjeto(c, "ligaTes.liga");
         
-        VentanaPrincipal vp = new VentanaPrincipal(c);
-        
-        vp.setVisible(true);
+//        VentanaPrincipal vp = new VentanaPrincipal(c);
+//        vp.setVisible(true);
         
         // Un poco de arte en el código ;)
            ;;  ;;

@@ -50,7 +50,7 @@ public class Serializacion {
             File archivo = new File(ruta);
             ObjectOutputStream objetoSalida = new ObjectOutputStream(new FileOutputStream(archivo, false));
             objetoSalida.writeObject(data);
-            objetoSalida.close();
+                objetoSalida.close();
             return true;
         } catch (IOException e) {
             System.err.println("Error de Escritura: " + e);
