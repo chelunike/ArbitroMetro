@@ -141,7 +141,7 @@ public class InitVentanilla extends JFrame{
 
                 Liga l = (Liga)Serializacion.desSerializaObjeto(ruta);
 
-                VentanaPrincipal p = new VentanaPrincipal(l);
+                VentanaPrincipal p = new VentanaPrincipal(l, ruta);
 
                 this.setVisible(false);
                 p.setVisible(true);

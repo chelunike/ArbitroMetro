@@ -34,6 +34,10 @@ public class ArbitroMetro {
         InitVentanilla init = new InitVentanilla("Liga Domingo Savio");
         init.setVisible(true);
         
+        /*
+            --- --- Test Zone --- ---
+        */
+        
         Liga c = new Liga("Liguilla");
         
         /*  --- Datos PreFabricados de Prueba --- */
@@ -118,10 +122,14 @@ public class ArbitroMetro {
         String str6 = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";//For Ubuntu :)
         
         try {
-            UIManager.setLookAndFeel(str6);
-            //SwingUtilities.updateComponentTreeUI(this);
+            UIManager.setLookAndFeel(str3);
         } catch (Exception e) {
-            System.out.println("Error aplicar estilos: "+e);
+            System.out.println("Error aplicar estilos Windows: "+e);
+            try {
+                UIManager.setLookAndFeel(str6);
+            } catch (Exception ex) {
+                System.out.println("Error aplicar estilos Linux: "+ex);
+            }
         }
         JFrame.setDefaultLookAndFeelDecorated(true);
         

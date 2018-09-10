@@ -1,6 +1,7 @@
 package ventanas;
 
 import arbitrometro.*;
+import herramientas.Serializacion;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.time.format.DateTimeFormatter;
@@ -14,11 +15,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
    //Atributos
     private Liga liga;
     private int index;
+    private String ruta;
     
     //Constructor
-    public VentanaPrincipal(Liga l) {
+    public VentanaPrincipal(Liga l, String ruta) {
         liga = l;
         index = 0;
+        this.ruta = ruta;
         
         // Inicializacon de la ventana
         initComponents();
@@ -218,9 +221,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // Event Exit xd
         int s = JOptionPane.showConfirmDialog(this, 
-                    "¿Seguro que quieres salir :( ?", "Y se marcho", 
-                    JOptionPane.YES_NO_OPTION);
+                    "¿Quieres guardar antes de salir?", "Y se marcho", 
+                    JOptionPane.YES_NO_CANCEL_OPTION);
         if(s == 0)
+            Serializacion.serializarObjeto(liga, ruta);
+        if(s<2)
             System.exit(0);
     }//GEN-LAST:event_formWindowClosing
 
