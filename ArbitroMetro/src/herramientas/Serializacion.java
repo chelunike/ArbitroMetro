@@ -47,10 +47,17 @@ public class Serializacion {
     //   --  --- Metodos Estaticos de Serializacion ---   --
     public static boolean serializarObjeto(Object data, String ruta) {
         try {
+            ObjectOutputStream objetoSalida = new ObjectOutputStream(new FileOutputStream(ruta, true)) {
+                protected void writeStreamHeader() throws IOException {
+                    reset();
+                }
+            };
+            
             File archivo = new File(ruta);
-            ObjectOutputStream objetoSalida = new ObjectOutputStream(new FileOutputStream(archivo, false));
+            // Serializacion normal
+            //ObjectOutputStream objetoSalida = new ObjectOutputStream(new FileOutputStream(archivo, false));
             objetoSalida.writeObject(data);
-                objetoSalida.close();
+            objetoSalida.close();
             return true;
         } catch (IOException e) {
             System.err.println("Error de Escritura: " + e);

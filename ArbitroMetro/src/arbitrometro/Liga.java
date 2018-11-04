@@ -125,7 +125,8 @@ public class Liga implements Serializable {
                     gf += pg;
                     gc += gv;
                 }else
-                    pe++;
+                    if ( !p.isAusente1() && !p.isAusente2())
+                        pe++;
             }
         n[0] = pg;
         n[1] = pe;
