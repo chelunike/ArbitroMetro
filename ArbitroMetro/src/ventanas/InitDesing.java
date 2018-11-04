@@ -1,10 +1,14 @@
 package ventanas;
 
+import javax.swing.ImageIcon;
+
 /**
  * @author chelunike
  */
 public class InitDesing extends javax.swing.JFrame {
 
+    private StretchIcon image = new StretchIcon(getClass().getResource("src/img/arbitro.png"));
+    
     /**
      * Creates new form InitDesing
      */
@@ -18,14 +22,17 @@ public class InitDesing extends javax.swing.JFrame {
     private void initComponents() {
 
         titleLb = new javax.swing.JLabel();
-        nuevoBt = new javax.swing.JButton();
         abrirBt1 = new javax.swing.JButton();
+        nuevoBt = new javax.swing.JButton();
+        panelArbi = new javax.swing.JPanel();
+        imageArbi = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ArbitroMetro");
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(204, 204, 204));
         setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        setIconImage(new ImageIcon("img/icon.png").getImage());
         setLocation(new java.awt.Point(0, 0));
         setResizable(false);
 
@@ -34,20 +41,6 @@ public class InitDesing extends javax.swing.JFrame {
         titleLb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLb.setText("ArbitroMetro");
         titleLb.setFocusable(false);
-
-        nuevoBt.setBackground(java.awt.Color.lightGray);
-        nuevoBt.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        nuevoBt.setForeground(new java.awt.Color(102, 102, 255));
-        nuevoBt.setText("Nuevo");
-        nuevoBt.setToolTipText("Abrir desde un archivo de Liga");
-        nuevoBt.setBorder(null);
-        nuevoBt.setBorderPainted(false);
-        nuevoBt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        nuevoBt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevoBtActionPerformed(evt);
-            }
-        });
 
         abrirBt1.setBackground(java.awt.Color.lightGray);
         abrirBt1.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
@@ -63,30 +56,64 @@ public class InitDesing extends javax.swing.JFrame {
             }
         });
 
+        nuevoBt.setBackground(java.awt.Color.lightGray);
+        nuevoBt.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        nuevoBt.setForeground(new java.awt.Color(102, 102, 255));
+        nuevoBt.setText("Nuevo");
+        nuevoBt.setToolTipText("Abrir desde un archivo de Liga");
+        nuevoBt.setBorder(null);
+        nuevoBt.setBorderPainted(false);
+        nuevoBt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        nuevoBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoBtActionPerformed(evt);
+            }
+        });
+
+        panelArbi.setLayout(new java.awt.BorderLayout());
+
+        imageArbi.setIcon(image);
+        imageArbi.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(titleLb, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(abrirBt1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(nuevoBt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(127, 127, 127))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(imageArbi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titleLb, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(abrirBt1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85)
+                        .addComponent(nuevoBt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 219, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(375, 375, 375)
+                    .addComponent(panelArbi, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(376, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(titleLb, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(nuevoBt, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(abrirBt1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 190, Short.MAX_VALUE))
+                .addGap(8, 8, 8)
+                .addComponent(imageArbi, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(236, Short.MAX_VALUE)
+                    .addComponent(panelArbi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(237, Short.MAX_VALUE)))
         );
 
         pack();
@@ -107,7 +134,9 @@ public class InitDesing extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton abrirBt1;
+    private javax.swing.JLabel imageArbi;
     private javax.swing.JButton nuevoBt;
+    private javax.swing.JPanel panelArbi;
     private javax.swing.JLabel titleLb;
     // End of variables declaration//GEN-END:variables
 }

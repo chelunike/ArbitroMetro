@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -70,6 +71,7 @@ public class VentanaEquipos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Administrar Equipos");
+        setIconImage(new ImageIcon("src/img/icon.png").getImage());
         setMinimumSize(new java.awt.Dimension(385, 530));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {

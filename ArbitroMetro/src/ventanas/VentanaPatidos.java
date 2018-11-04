@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.time.format.DateTimeFormatter;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -96,6 +97,7 @@ public class VentanaPatidos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(201, 31, 167));
+        setIconImage(new ImageIcon("src/img/icon.png").getImage());
         setMinimumSize(new java.awt.Dimension(315, 325));
 
         jComBoxEquipo1.addActionListener(new java.awt.event.ActionListener() {

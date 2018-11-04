@@ -4,6 +4,7 @@ import arbitrometro.Liga;
 import herramientas.IO;
 import herramientas.Serializacion;
 import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -50,6 +51,7 @@ public class NuevaLiga extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Nueva liga :)");
+        setIconImage(new ImageIcon("src/img/icon.png").getImage());
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);

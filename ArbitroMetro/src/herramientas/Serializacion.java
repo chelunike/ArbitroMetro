@@ -55,7 +55,7 @@ public class Serializacion {
             
             File archivo = new File(ruta);
             // Serializacion normal
-            //ObjectOutputStream objetoSalida = new ObjectOutputStream(new FileOutputStream(archivo, false));
+            objetoSalida = new ObjectOutputStream(new FileOutputStream(archivo, false));
             objetoSalida.writeObject(data);
             objetoSalida.close();
             return true;
@@ -71,6 +71,10 @@ public class Serializacion {
         if (archivo.exists()) {
             ObjectInputStream ois = null;
             try {
+                ois = new ObjectInputStream(new FileInputStream(archivo)) {
+                    protected void readStreamHeader() throws IOException {  
+                    }
+                };
                 ois = new ObjectInputStream(new FileInputStream(archivo));
                 aux = ois.readObject();
                 ois.close();

@@ -4,9 +4,12 @@ import arbitrometro.Liga;
 import herramientas.Serializacion;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -20,6 +23,8 @@ public class InitVentanilla extends JFrame{
     private javax.swing.JButton abrirBt;
     private javax.swing.JButton nuevoBt;
     private javax.swing.JLabel titleLb;
+    private javax.swing.JLabel imageArbi;
+    private javax.swing.JPanel panelArbi;
     
     
     //Constructor
@@ -38,11 +43,14 @@ public class InitVentanilla extends JFrame{
         titleLb = new javax.swing.JLabel();
         nuevoBt = new javax.swing.JButton();
         abrirBt = new javax.swing.JButton();
-        
+        imageArbi = new JLabel();
+        panelArbi = new JPanel();
+    
         //Configuramos Ventana
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ArbitroMetro");
         //setAlwaysOnTop(true);
+        setIconImage(new ImageIcon("src/img/icon.png").getImage());
         setBackground(new java.awt.Color(204, 204, 204));
         setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         setLocation(new java.awt.Point(0, 0));
@@ -84,30 +92,51 @@ public class InitVentanilla extends JFrame{
         });
         
         //Configuramos Layout y Añadimos Componentes
+        panelArbi.setLayout(new java.awt.BorderLayout());
+
+        StretchIcon image = new StretchIcon(getClass().getResource("/img/arbitro.png"));
+        imageArbi.setIcon(image);
+        panelArbi.add(imageArbi, java.awt.BorderLayout.CENTER);
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(titleLb, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(abrirBt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(nuevoBt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(127, 127, 127))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(imageArbi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titleLb, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(abrirBt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85)
+                        .addComponent(nuevoBt, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 219, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(375, 375, 375)
+                    .addComponent(panelArbi, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(376, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(titleLb, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(nuevoBt, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(abrirBt, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 190, Short.MAX_VALUE))
+                .addGap(8, 8, 8)
+                .addComponent(imageArbi, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(236, Short.MAX_VALUE)
+                    .addComponent(panelArbi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(237, Short.MAX_VALUE)))
         );
         //Empaquetamos :)
         pack();

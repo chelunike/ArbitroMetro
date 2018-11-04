@@ -3,6 +3,7 @@ package ventanas;
 import arbitrometro.Liga;
 import herramientas.IO;
 import herramientas.Tabla;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -41,6 +42,7 @@ public class VentanaClasificacion extends javax.swing.JFrame {
         jTableClasi = tabla.getTabla();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setIconImage(new ImageIcon("src/img/icon.png").getImage());
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);

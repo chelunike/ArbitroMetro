@@ -4,6 +4,7 @@ import arbitrometro.Liga;
 import arbitrometro.Jornada;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,6 +39,7 @@ public class NuevaJornada extends javax.swing.JDialog {
         jButtonAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconImage(new ImageIcon("src/img/icon.png").getImage());
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);

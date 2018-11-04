@@ -30,17 +30,22 @@ public class ArbitroMetro {
         System.out.println("\t Team Potato :) ");
         
         setTheme();
-                
-        InitVentanilla init = new InitVentanilla("Liga Domingo Savio");
-        init.setVisible(true);
+        
+        try {
+            InitVentanilla init = new InitVentanilla("Liga Domingo Savio");
+            init.setVisible(true);
+        }catch(Exception e) {
+            System.out.println(""+e.getMessage());
+            System.exit(1);
+        }
         
         /*
             --- --- Test Zone --- ---
-        */
+        * /
         
         Liga c = new Liga("Liguilla");
         
-        /*  --- Datos PreFabricados de Prueba --- */
+        /*  --- Datos PreFabricados de Prueba --- * /
         Equipo e1 = new Equipo("Potato");
         
         e1.añadirJugador("Antonio", LocalDate.now());
@@ -87,7 +92,7 @@ public class ArbitroMetro {
         c.addJornada(j1);
         c.addJornada(j2);
         
-        //*/
+        */
         
         /*for(String cell: Liga.HEADCLASI)
             System.out.print(cell+"\t");
@@ -98,7 +103,7 @@ public class ArbitroMetro {
             System.out.println("");
         }*/
         
-        Serializacion.serializarObjeto(c, "ligaTes.liga");
+        //Serializacion.serializarObjeto(c, "ligaTes.liga");
         
 //        VentanaPrincipal vp = new VentanaPrincipal(c);
 //        vp.setVisible(true);
