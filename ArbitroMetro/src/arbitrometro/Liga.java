@@ -104,30 +104,37 @@ public class Liga implements Serializable {
         int pp=0;// 2 Partidos Perdidos
         int gf=0;// 3 Goles favor
         int gc=0;// 4 Goles contra
-        int gp, gv;
-        for(Jornada j:jornadas)
+        int gp=0, gv=0;
+        for(Jornada j:jornadas) {
+            System.out.println("Jornada: "+j.getTitle());
             for(Partido p: j.getPartidos()){
-                if(p.getEquipo1() == e){
+                System.out.println("Len"+j.getPartidos().size());
+                System.out.println("Partido");
+                boolean c = true;
+                if(p.getEquipo1().getNombre().compareToIgnoreCase(e.getNombre())==0){
                     gp = p.totalGoles1();
                     gv = p.totalGoles2();
-                }else if (p.getEquipo2() == e){
+                }else if (p.getEquipo2().getNombre().compareToIgnoreCase(e.getNombre())==0){
                     gp = p.totalGoles2();
                     gv = p.totalGoles1();
                 }else
-                    continue;
-        
-                    System.out.println("Search 2 "+e.getNombre()+" Find: "+p.getEquipo2().getNombre()+" - "+gp+"-"+gv );        if(gp > gv){
-                    pg ++;
-                    gf += pg;
+                    c = false;
+                
+                if(c) {
+                    System.out.println("Estadistica Equipo1: "+e+" Goles favor: "+gp+" Goles contra: "+gv);
+                    if(gp == gv)
+                        if ( !p.isAusente1() && !p.isAusente2())
+                            pe++;
+                    else if(gp > gv)
+                        pg ++;
+                    else
+                        pp ++;
+                    gf += gp;
                     gc += gv;
-                }else if(gp < gv){
-                    pp ++;
-                    gf += pg;
-                    gc += gv;
-                }else
-                    if ( !p.isAusente1() && !p.isAusente2())
-                        pe++;
+                    System.out.println("PGanados: "+pg+" PPerdidos: "+pp        );
+                } 
             }
+        }
         n[0] = pg;
         n[1] = pe;
         n[2] = pp;
