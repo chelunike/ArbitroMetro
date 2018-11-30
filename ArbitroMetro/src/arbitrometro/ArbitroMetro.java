@@ -32,8 +32,8 @@ public class ArbitroMetro {
         setTheme();
         
         try {
-            InitVentanilla init = new InitVentanilla("Liga Domingo Savio");
-            init.setVisible(true);
+            //InitVentanilla init = new InitVentanilla("Liga Domingo Savio");
+            //init.setVisible(true);
         }catch(Exception e) {
             System.out.println(""+e.getMessage());
             System.exit(1);
@@ -41,11 +41,11 @@ public class ArbitroMetro {
         
         /*
             --- --- Test Zone --- ---
-        * /
+        */
         
         Liga c = new Liga("Liguilla");
         
-        /*  --- Datos PreFabricados de Prueba --- * /
+        /*  --- Datos PreFabricados de Prueba --- */
         Equipo e1 = new Equipo("Potato");
         
         e1.añadirJugador("Antonio", LocalDate.now());
@@ -70,6 +70,7 @@ public class ArbitroMetro {
         
         Partido p1 = new Partido(c.getEquipo(0), c.getEquipo(1));
         Partido p2 = new Partido(c.getEquipo(1), c.getEquipo(0));
+        Partido p3 = new Partido(c.getEquipo(1), c.getEquipo(0));
         
         Goles g1 = new Goles(e1.getJugador(1), 2);
         Goles g2 = new Goles(e1.getJugador(2), 5);
@@ -84,6 +85,7 @@ public class ArbitroMetro {
         j1.addPartido(p2);
         j1.addPartido(p2);
         j2.addPartido(p2);
+        j2.addPartido(p3);
         
         p1.equipo1Ausente(true);
         //p1.equipo2Ausente(true);
@@ -92,16 +94,16 @@ public class ArbitroMetro {
         c.addJornada(j1);
         c.addJornada(j2);
         
-        */
+        //* /
         
-        /*for(String cell: Liga.HEADCLASI)
+        for(String cell: Liga.HEADCLASI)
             System.out.print(cell+"\t");
         System.out.println("");
         for(String[] row: c.getClasificacion()){
             for(String cell: row)
                 System.out.print(cell+"\t");
             System.out.println("");
-        }*/
+        }
         
         //Serializacion.serializarObjeto(c, "ligaTes.liga");
         

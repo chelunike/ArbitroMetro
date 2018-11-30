@@ -108,8 +108,8 @@ public class Liga implements Serializable {
         for(Jornada j:jornadas) {
             System.out.println("Jornada: "+j.getTitle());
             for(Partido p: j.getPartidos()){
-                System.out.println("Len"+j.getPartidos().size());
-                System.out.println("Partido");
+                //System.out.println("Len"+j.getPartidos().size());
+                System.out.println("Partido ");
                 boolean c = true;
                 if(p.getEquipo1().getNombre().compareToIgnoreCase(e.getNombre())==0){
                     gp = p.totalGoles1();
@@ -121,17 +121,18 @@ public class Liga implements Serializable {
                     c = false;
                 
                 if(c) {
-                    System.out.println("Estadistica Equipo1: "+e+" Goles favor: "+gp+" Goles contra: "+gv);
-                    if(gp == gv)
+                    if(gp == gv) {
                         if ( !p.isAusente1() && !p.isAusente2())
                             pe++;
-                    else if(gp > gv)
+                    } else if(gp > gv) {
                         pg ++;
-                    else
+                    } else {
                         pp ++;
+                    }
                     gf += gp;
                     gc += gv;
-                    System.out.println("PGanados: "+pg+" PPerdidos: "+pp        );
+                    System.out.println("PGanados: "+pg+" PPerdidos: "+pp+" Empatados "+pe);
+                    System.out.println("Estadistica Equipo1: "+e+" Goles favor: "+gp+" Goles contra: "+gv);
                 } 
             }
         }
